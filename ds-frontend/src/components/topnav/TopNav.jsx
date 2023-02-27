@@ -6,6 +6,10 @@ import Button from 'react-bootstrap/Button'
 import Logo from '../../assets/logo.png'
 import { Image } from 'react-bootstrap'
 import { logout } from '../../context/commonFunctions'
+
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSearch} from "@fortawesome/free-solid-svg-icons";
+import Form from "react-bootstrap/Form";
 function TopNav() {
   return (
     <Navbar collapseOnSelect expand="lg">
@@ -14,17 +18,26 @@ function TopNav() {
           {' '}
           <Image src={Logo} />{' '}
         </Navbar.Brand>
+        <div className="ms-5 me-5">
+          <Form inline>
+            <div className="position-relative">
+              <Form.Control type="text" placeholder="Search" />
+              <FontAwesomeIcon icon={faSearch} className="position-absolute top-50 end-0 translate-middle-y pe-2" />
+            </div>
+          </Form>
+        </div>
+
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/about">About</Nav.Link>
-            <Nav.Link href="/buyers">Buyers</Nav.Link>
-            <Nav.Link href="#contact-us">Contact</Nav.Link>
-          </Nav>
+          {/*<Nav className="me-auto">*/}
+          {/*  <Nav.Link href="/">Home</Nav.Link>*/}
+          {/*  <Nav.Link href="/about">About</Nav.Link>*/}
+          {/*  <Nav.Link href="/buyers">Buyers</Nav.Link>*/}
+          {/*  <Nav.Link href="#contact-us">Contact</Nav.Link>*/}
+          {/*</Nav>*/}
 
           {!localStorage.getItem('token') && (
-            <Nav>
+            <Nav className="me-0">
               <Nav.Link href="/login">
                 <Button variant="text">Login</Button>
               </Nav.Link>
