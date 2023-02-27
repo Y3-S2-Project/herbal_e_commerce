@@ -8,11 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.4.4
       - name: Set up Kubernetes CLI
-        uses: azure/setup-kubectl@v1
+        uses: azure/setup-kubectl@v2
         with:
-          version: 'latest'
+          version: "latest"
       - name: Log in to Azure
         uses: azure/login@v1
         with:
