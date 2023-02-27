@@ -1,0 +1,18 @@
+.status-btn {
+  border-radius: 20px;
+  background-color: transparent;
+  color: #17d193;
+  border: 1px solid #17d193;
+  padding: 0 10px;
+  height: 34px;
+  font-size: 13px;
+}
+.Pending {
+  color: #f7b500;
+  border-color: #f7b500;
+}
+
+.Confirmed {
+  color: #17d193;
+  border-color: #17d193;
+}

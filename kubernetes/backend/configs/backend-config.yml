@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+data:
+  BACKEND_DB_URL: <backend_db_url>
+  BACKEND_DB_NAME: <backend_db_name>

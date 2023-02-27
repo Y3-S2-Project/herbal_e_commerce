@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: <frontend_image_name>
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: frontend-config
+          volumeMounts:
+            - name: frontend-storage
+              mountPath: /app/logs
+      volumes:
+        - name: frontend-storage
+          persistentVolumeClaim:
+            claimName: frontend-pvc

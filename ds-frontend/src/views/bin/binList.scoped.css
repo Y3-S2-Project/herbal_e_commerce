@@ -1,0 +1,86 @@
+* {
+  color: #6e768e;
+}
+
+p {
+  margin: 0;
+  font-size: 14.35px;
+}
+
+.font-s {
+  font-size: 14.35px;
+}
+
+.header {
+  width: auto;
+}
+
+.header a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.header a:hover {
+  color: #17d193;
+}
+
+.header a.active {
+  color: #17d193;
+  border-bottom: 3px solid #17d193;
+}
+
+.new-bin {
+  width: auto;
+}
+
+.r-button button {
+  margin: 0 10px;
+}
+.card-heder {
+  border-bottom: 1px solid #6e768e;
+  padding-bottom: 10px;
+}
+
+.status-btn {
+  border-radius: 20px;
+  background-color: transparent;
+  color: #17d193;
+  border: 1px solid #17d193;
+  padding: 0 10px;
+  height: 34px;
+  font-size: 13px;
+}
+
+.header-r p {
+  font-size: 12px;
+  text-align: end;
+}
+
+.card-body {
+  padding: 10px 0 0 0;
+  font-size: 13px;
+}
+
+.card-body button {
+  font-size: 13px;
+}
+
+.Pending {
+  color: #f7b500;
+  border-color: #f7b500;
+}
+
+.Accepted {
+  color: #17d193;
+  border-color: #17d193;
+}
+
+.Rejected {
+  color: #f50000;
+  border-color: #f50000;
+}
+
+.Completed {
+  color: #1774d1;
+  border-color: #1774d1;
+}

@@ -1,0 +1,187 @@
+/* .about-component {
+  margin: auto;
+}
+
+.about-header {
+  font-style: bold;
+  text-align: center;
+  font-size: 50px;
+}
+
+.about-container {
+  position: absolute;
+
+  width: 756px;
+  height: 332px;
+  right: 637px;
+  bottom: 354px;
+  top: 266px;
+  background: #f2efee;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-heading {
+  position: absolute;
+  width: 551px;
+  height: 157px;
+  left: 123px;
+  top: 160px;
+ 
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 66px;
+  line-height: 75px;
+
+
+  color: #333333;
+}
+
+.about-company-container {
+  margin-top: 251px;
+  margin-left: 1127px;
+  width: 194.84px;
+  height: 178.48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-company-container img {
+  object-fit: cover;
+  height: 400px;
+  width: 450px;
+
+  border-radius: 20px;
+  margin-top:-158px ;
+
+}
+
+.about-company-para {
+  position: absolute;
+  width: 660px;
+  height: 260px;
+
+  padding: 60px;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 52px;
+
+
+  color: #000000;
+} */
+
+
+.about-container{
+
+  width:100%;
+  height:100%;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 20px 20px 10px 10px;
+  display: flex;
+  flex-wrap: nowrap;
+  /* background-color: DodgerBlue; */
+  border-radius: 10px;
+
+}
+
+
+.about-container1{
+
+
+width: 150%;
+height: 100%;
+margin: 10px;
+text-align: center;
+justify-content: center;
+padding: 10px;
+padding-top: 0px;
+border-radius: 10px;
+background: #F2EFEE;
+box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.25);
+border-radius: 20px;
+margin-left:80px
+
+}
+
+.about-container2{
+
+  width: 500px;
+  margin-top: -30px;
+  text-align: center;
+  justify-content: center;
+  padding: 20px;
+  padding-top: 0px;
+  border-radius: 10px;
+  /* background-color: aquamarine; */
+  }
+  
+
+.aboutpage-row{
+
+margin-top: 100px;
+}
+
+.aboutus-header{
+
+font-family: 'Ubuntu Mono';
+font-style: bold;
+font-weight: 700;
+font-size: 70px;
+
+display: flex;
+align-items: center;
+color: #153761;
+margin-left: 170px;
+
+}
+
+.img-aboutpage{
+
+  width:100%;
+  height:100%;
+
+
+}
+
+
+.about-container3{
+
+
+width: 35%;
+margin: 10px;
+text-align: center;
+justify-content: center;
+padding: 20px;
+padding-top: 0px;
+border-radius: 10px;
+/* background-color: aquamarine; */
+margin-left:50px;
+}
+
+.aboupage-content{
+
+  padding:50px;
+  /* background-color: blue; */
+  margin: 50px;
+  margin-top:30px;
+  color:rgb(20, 19, 19);
+  height:300px;
+  font-family: 'DM Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 52px;
+/* or 260% */
+
+
+color: #000000;
+}

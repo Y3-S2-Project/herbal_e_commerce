@@ -1,0 +1,19 @@
+.logo-img {
+  width: 150px;
+  height: 150px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.logo-img img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.r-date {
+  position: absolute;
+  left: 20px;
+  bottom: -15px;
+  font-size: 13px;
+}
