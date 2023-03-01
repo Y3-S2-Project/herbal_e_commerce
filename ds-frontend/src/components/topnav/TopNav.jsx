@@ -6,10 +6,12 @@ import Button from 'react-bootstrap/Button'
 import Logo from '../../assets/logo.png'
 import { Image } from 'react-bootstrap'
 import { logout } from '../../context/commonFunctions'
-
+import CategoryIcon from '../../assets/images/navbar-icon/catagories-icon.png'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import Form from "react-bootstrap/Form";
+import {NavLink} from "react-router-dom";
+import './topnav.scoped.css'
 function TopNav() {
   return (
     <Navbar collapseOnSelect expand="lg">
@@ -18,13 +20,30 @@ function TopNav() {
           {' '}
           <Image src={Logo} />{' '}
         </Navbar.Brand>
-        <div className="ms-5 me-5">
+        <div className="ms-5 me-5 d-flex align-items-center">
           <Form inline>
             <div className="position-relative">
               <Form.Control type="text" placeholder="Search" />
               <FontAwesomeIcon icon={faSearch} className="position-absolute top-50 end-0 translate-middle-y pe-2" />
             </div>
           </Form>
+          <div>
+            <button type="button" className="btn ms-3 " data-bs-toggle="collapse" data-bs-target="#categories-menu">
+              <img src={CategoryIcon}   alt="Categories Menu" />
+              Categories
+            </button>
+
+            <div className="collapse nav-categories" id="categories-menu">
+              <ul className="list-unstyled">
+                <li><NavLink to="/category1">Category 1</NavLink></li>
+                <li><NavLink to="/category2">Category 2</NavLink></li>
+                <li><NavLink to="/category3">Category 3</NavLink></li>
+                <li><NavLink to="/category4">Category 4</NavLink></li>
+                <li><NavLink to="/category5">Category 5</NavLink></li>
+              </ul>
+            </div>
+          </div>
+
         </div>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -37,7 +56,7 @@ function TopNav() {
           {/*</Nav>*/}
 
           {!localStorage.getItem('token') && (
-            <Nav className="me-0">
+            <Nav className="m-auto me-0">
               <Nav.Link href="/login">
                 <Button variant="text">Login</Button>
               </Nav.Link>
