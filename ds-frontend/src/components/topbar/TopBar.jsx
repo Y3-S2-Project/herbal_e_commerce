@@ -24,7 +24,7 @@ export default function TopBar(props) {
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button className="btn font-color topbar-hover tcontainerbtn" type="submit">
+              <button className="btn font-color topbar-hover " type="submit">
                 <i className="fas fa-search"></i>
               </button>
             </form>

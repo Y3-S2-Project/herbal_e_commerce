@@ -20,4 +20,4 @@ ENV PORT=5000
 EXPOSE 5000
 
 # Start the app
-CMD ["npm", "start"]
+CMD ["yarn", "start"]

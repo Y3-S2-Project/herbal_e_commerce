@@ -5,8 +5,8 @@ import { sendTokenResponse } from '../utils/jwt'
 
 export const login = asyncHandler(async (req, res) => {
   const user = await loginUser(req.body)
-  if (!user) return makeResponse({ res, status: 500, message: 'Failed to login user' })
-  if (user.status) return makeResponse({ res, ...user })
+  if (!user) {return makeResponse({ res, status: 500, message: 'Failed to login user' })}
+  if (user.status) {return makeResponse({ res, ...user })}
   return sendTokenResponse(res, user, 'User logged in successfully')
 })
 
