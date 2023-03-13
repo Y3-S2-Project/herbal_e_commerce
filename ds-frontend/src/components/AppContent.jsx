@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 // routes config

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
@@ -10,7 +10,6 @@ import { TopNav } from '../../../components'
 const BuyerRegister = () => {
   const [validated, setValidated] = useState(false)
 
-  const current = new Date()
   const [form, setForm] = useState({
     user: {
       role: 'COMPANY',

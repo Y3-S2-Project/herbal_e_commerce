@@ -3,31 +3,20 @@ import Button from 'react-bootstrap/Button'
 import { Container, Row, Col } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import Nav from 'react-bootstrap/Nav'
-import animationData from '../../../assets/helloAnimation.json'
-import Lottie from 'react-lottie'
+
 import TopNav from '../../../components/topnav/TopNav'
 import { useState } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 export default function Login() {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
-  }
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const navigate = useNavigate()
-  const location = useLocation()
-  const from = location.state?.from?.pathname || '/'
-  const [userRole, setUserRole] = useState('')
-  //
+  //const location = useLocation()
+  //  const from = location.state?.from?.pathname || '/'
+
   // const [useLocation, setUserLocation] = useLocation()
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -79,9 +68,7 @@ export default function Login() {
       <TopNav />
       <Container className="mt-5">
         <Row>
-          <Col>
-            <Lottie options={defaultOptions} height={300} width={300} />
-          </Col>
+          <Col></Col>
           <Col>
             <Form className="mt-5 " onSubmit={handleSubmit}>
               <Form.Group className="mb-3 w-75 ms-5" controlId="formBasicEmail">

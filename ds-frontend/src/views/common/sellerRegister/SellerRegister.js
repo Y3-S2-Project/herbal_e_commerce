@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
@@ -10,7 +10,7 @@ import { TopNav } from '../../../components'
 const SellerRegister = () => {
   const [validated, setValidated] = useState(false)
 
-  const current = new Date()
+  //const current = new Date()
   const [form, setForm] = useState({
     user: {
       role: 'COMPANY',
@@ -64,12 +64,6 @@ const SellerRegister = () => {
     if (name === 'amount') {
       value = Number(value)
     }
-    setForm({
-      ...form,
-      ['paymentId']: `PAYID${Math.floor(Math.random() * 10000 + 1)}`,
-      [name]: value,
-    })
-    console.log(form)
   }
 
   return (

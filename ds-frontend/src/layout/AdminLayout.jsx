@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import { AppContent, TopBar, SideBar } from '../components'
-import { useNavigate } from 'react-router-dom'
+
 const DefaultLayout = () => {
   const [isActive, setActive] = useState(false)
 

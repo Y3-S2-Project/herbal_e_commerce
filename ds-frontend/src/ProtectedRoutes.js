@@ -1,7 +1,5 @@
 import { Outlet, Navigate, useLocation } from 'react-router'
 
-
-
 const useAuth = () => {
   const user = {
     loggedIn: localStorage.getItem('authenticated'),

@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 
 import secondCol from '../../../assets/images/landing-page/second-col.png'
 import HerbCardList from '../../../components/herbCard/HerbCardList'
-import { faAngleRight, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 import Image1 from '../../../assets/images/landing-slider/image1.jpg'
 import Image2 from '../../../assets/images/landing-slider/image2.jpg'
@@ -51,7 +51,7 @@ export default function Landing() {
 
           <Col className="" xs={4} xl={4}>
             {/* Second column with width of 35% */}
-            <img src={secondCol} height="400px" width="100%" />
+            <img src={secondCol} height="400px" width="100%" alt="second-column" />
           </Col>
         </Row>
         <Row className="vh-50 mt-0">

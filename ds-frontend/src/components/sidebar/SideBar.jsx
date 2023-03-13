@@ -1,8 +1,7 @@
 
 import { NavLink } from "react-router-dom";
 import "./sidebar.scoped.css";
-import axios from 'axios'
-import { useEffect, useState, useRef } from 'react'
+import {  useRef } from 'react'
 import RImage from './R.png'
 import RImageTittle from './Redivivus.png'
 

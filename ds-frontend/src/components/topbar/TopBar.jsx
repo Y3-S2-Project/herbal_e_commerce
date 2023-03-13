@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useState } from 'react'
 import './topbar.css'
 import { logout } from '../../context/commonFunctions'
 export default function TopBar(props) {

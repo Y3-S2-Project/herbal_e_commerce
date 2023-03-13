@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import React, { useState} from 'react'
+import { useLocation} from 'react-router-dom'
 import routes from '../routes'
 import { AppContent, UserSidebar, TopNav } from '../components'
 
 const DefaultLayout = () => {
   const [isActive, setActive] = useState(false)
-  const navigate = useNavigate()
+
 
 
   const currentLocation = '/' + useLocation().pathname.split('/')[2]
