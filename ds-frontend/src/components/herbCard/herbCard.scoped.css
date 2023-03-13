@@ -1,6 +1,7 @@
 .herb-card {
   height: 227px;
   width: 253px;
-  background-color: #ffffff;
+  background-color: #ffffff !important;
   margin: 5px;
+  border-radius: 10px;
 }

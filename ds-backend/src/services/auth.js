@@ -7,6 +7,7 @@ import { insertCompnay } from "../repository/company";
 
 export const loginUser = async ({ email, password }) => {
     const user = await getOneUser({ email }, true)
+
     if (!user) return false
     const isPasswordMatch = await new Promise((resolve, reject) => {
         bcrypt.compare(password, user.password, (err, hash) => {
@@ -26,7 +27,7 @@ export const registerUser = async ({ user, specificData }) => {
             resolve(hash)
         })
     })
-
+    
     if (user.role === 'CUSTOMER') {
         var newCustomer = await createCustomer(specificData);
     } else if (user.role === 'ADMIN') {
