@@ -1,16 +1,19 @@
 import React, { Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import Login from './views/common/login/LoginPage'
 import Spinner from 'react-bootstrap/Spinner'
-import Landing from './views/common/landing/Landing'
-import Unauthorized from './views/common/unauthorized/Unauthorized'
-import RegistrationIntro from './views/common/registration-intro/RegistrationIntro'
-import BuyerRegister from './views/common/buyerRegister/BuyerRegister'
-import SellerRegister from './views/common/sellerRegister/SellerRegister'
+
 import 'react-toastify/dist/ReactToastify.css'
 import ProtectedRoutes from './ProtectedRoutes'
-
+import {
+  Login,
+  ForgetPassword,
+  BuyerRegister,
+  SellerRegister,
+  RegistrationIntro,
+  Unauthorized,
+  Landing,
+} from './views/common'
 const loading = (
   <Spinner animation="border" role="status">
     <span className="sr-only">Loading...</span>
@@ -29,12 +32,13 @@ function App() {
           <Route path="/unauthorized" name="Unauthorized" element={<Unauthorized />} />
           <Route path="/login" name="Login" element={<Login />} />
           <Route path="/registration-intro" name="Reg-intro" element={<RegistrationIntro />} />
+          <Route path="/forget-password" name="ForgetPassword" element={<ForgetPassword />} />
           <Route path="/buyer-registration" name="BuyerRegister" element={<BuyerRegister />} />
           <Route path="/seller-registration" name="SellerRegister" element={<SellerRegister />} />
           <Route element={<ProtectedRoutes allowedRoles={['ADMIN']} />}>
             <Route path="admin/*" name="Home" element={<AdminLayout />} />
           </Route>
-          <Route element={<ProtectedRoutes allowedRoles={['COMPANY', 'CUSTOMER']} />}>
+          <Route element={<ProtectedRoutes allowedRoles={['SELLER', 'BUYER']} />}>
             {' '}
             <Route path="user/*" name="UserLayout" element={<UserLayout />} />
           </Route>

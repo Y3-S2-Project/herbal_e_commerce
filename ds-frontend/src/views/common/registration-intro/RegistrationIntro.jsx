@@ -46,7 +46,7 @@ export default function RegistrationIntro() {
             <Button
               variant="outline-dark"
               onClick={() => {
-                navigate('/patient-registration')
+                navigate('/buyer-registration')
               }}
             >
               Patient

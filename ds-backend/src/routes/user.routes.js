@@ -1,5 +1,5 @@
 import express from "express";
-import { getAll , update , deleteUser, getById, getMyDetails} from "../controllers/user";
+import { getAll , update , deleteUser, getById, getMyDetails} from "../controllers/user.controller";
 import { protect,adminProtect} from "../middleware/auth";
 const userRouter = express.Router()
 

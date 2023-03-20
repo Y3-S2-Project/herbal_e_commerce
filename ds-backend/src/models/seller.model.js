@@ -1,22 +1,20 @@
 import mongoose, { Schema } from "mongoose";
 
-const companySchema = new Schema(
+const SellerSchema = new Schema(
   {
-    companyName: {
+    sellerName: {
       type: String,
       required: true,
     },
 
-    companyEmail: {
+    sellerEmail: {
       type: String,
       required: true,
     },
-
   },
   {
     timestamps: true,
   }
 );
 
-module.exports = mongoose.model("Company", companySchema);
-
+module.exports = mongoose.model("Seller", SellerSchema);

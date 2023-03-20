@@ -1,4 +1,4 @@
-import Admin from '../models/admin'
+import Admin from '../models/admin.model'
 import logger from '../utils/logger'
 
 export const createAdmin = async (admin) => {

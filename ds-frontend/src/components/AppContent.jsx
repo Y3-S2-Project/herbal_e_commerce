@@ -11,9 +11,9 @@ const AppContent = () => {
     switch (r) {
       case 'isAdmin':
         return location.pathname.split('/')[1] === 'admin'
-      case 'isCustomer':
+      case 'isSeller':
         return location.pathname.split('/')[1] === 'user'
-      case 'isCompany':
+      case 'isBuyer':
         return location.pathname.split('/')[1] === 'user'
       default:
         return false

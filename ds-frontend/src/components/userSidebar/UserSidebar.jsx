@@ -6,7 +6,7 @@ export default function UserSideBar(props) {
     <div>
       <nav className="sidebar">
         <ul className="list-unstyled components font-color">
-          {localStorage.getItem('role') === 'CUSTOMER' && (
+          {localStorage.getItem('role') === 'BUYER' && (
             <>
               <li>
                 <NavLink
@@ -71,7 +71,7 @@ export default function UserSideBar(props) {
               </li>
             </>
           )}
-          {localStorage.getItem('role') === 'COMPANY' && (
+          {localStorage.getItem('role') === 'SELLER' && (
             <>
               <li>
                 <NavLink

@@ -13,7 +13,7 @@ const SellerRegister = () => {
   //const current = new Date()
   const [form, setForm] = useState({
     user: {
-      role: 'COMPANY',
+      role: 'SELLER',
       name: {
         first_name: '',
         last_name: '',

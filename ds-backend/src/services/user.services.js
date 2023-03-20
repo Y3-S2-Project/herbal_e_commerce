@@ -1,4 +1,4 @@
-import { getAllUsers, getOneUser, findOneAndUpdateUser } from "../repository/user"
+import { getAllUsers, getOneUser, findOneAndUpdateUser } from "../repository/user.repository"
 
 export const getUsers = async (query) => {
     return await getAllUsers(query)
