@@ -76,15 +76,15 @@ const BuyerRegister = () => {
     <>
       <TopNav />
       <div className="">
-        <div className="flex justify-center items-center min-h-screen place-items-center">
-          <div className="p-12 bg-white sm:w-8/12 md:w-8/12 lg:w-8/12">
-            <h1 className="text-3xl font-semibold text-center">Register Now !!!</h1>
-            <form className="mt-6 " onSubmit={handleSubmit}>
-              <div className="flex sm:flex-col md:flex-row justify-center">
-                <div className="mr-8">
+        <div className="tw-flex tw-justify-center tw-items-center tw-min-h-screen tw-place-items-center">
+          <div className="tw-p-12 tw-bg-white tw-sm:w-8/12 tw-md:w-8/12 tw-lg:w-8/12">
+            <h1 className="tw-text-3xl tw-font-semibold tw-text-center">Register Now !!!</h1>
+            <form className="tw-mt-6 " onSubmit={handleSubmit}>
+              <div className="tw-flex tw-sm:flex-col tw-md:flex-row tw-justify-center">
+                <div className="tw-mr-8">
                   <label
                     for="firstName"
-                    className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
+                    className="tw-block tw-mt-2 tw-text-xs tw-font-semibold tw-text-gray-600 tw-uppercase"
                   >
                     First Name
                   </label>
@@ -103,12 +103,12 @@ const BuyerRegister = () => {
                       })
                     }
                     autoComplete="firstName"
-                    className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                    className="tw-block tw-w-full tw-p-3 tw-mt-2 tw-text-gray-700 tw-bg-gray-200 tw-appearance-none tw-focus:outline-none tw-focus:bg-gray-300 tw-focus:shadow-inner"
                     required
                   />
                   <label
                     for="lastName"
-                    className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
+                    className="tw-block tw-mt-2 tw-text-xs tw-font-semibold tw-text-gray-600 tw-uppercase"
                   >
                     Last Name
                   </label>
@@ -127,12 +127,12 @@ const BuyerRegister = () => {
                       })
                     }
                     autoComplete="lastName"
-                    className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                    className="tw-block tw-w-full tw-p-3 tw-mt-2 tw-text-gray-700 tw-bg-gray-200 tw-appearance-none tw-focus:outline-none tw-focus:bg-gray-300 tw-focus:shadow-inner"
                     required
                   />
                   <label
                     for="email"
-                    className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
+                    className="tw-block tw-mt-2 tw-text-xs tw-font-semibold tw-text-gray-600 tw-uppercase"
                   >
                     E-mail
                   </label>
@@ -143,12 +143,12 @@ const BuyerRegister = () => {
                     placeholder="john.doe@company.com"
                     onChange={handleInput}
                     autoComplete="email"
-                    className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                    className="tw-block tw-w-full tw-p-3 tw-mt-2 tw-text-gray-700 tw-bg-gray-200 tw-appearance-none tw-focus:outline-none tw-focus:bg-gray-300 tw-focus:shadow-inner"
                     required
                   />
                   <label
                     for="dateOfBirth"
-                    className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
+                    className="tw-block tw-mt-2 tw-text-xs tw-font-semibold tw-text-gray-600 tw-uppercase"
                   >
                     Date of Birth
                   </label>
@@ -159,14 +159,14 @@ const BuyerRegister = () => {
                     placeholder="john.doe@company.com"
                     onChange={handleInput}
                     autoComplete="dateOfBirth"
-                    className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                    className="tw-block tw-w-full tw-p-3 tw-mt-2 tw-text-gray-700 tw-bg-gray-200 tw-appearance-none tw-focus:outline-none tw-focus:bg-gray-300 tw-focus:shadow-inner"
                     required
                   />
                 </div>
                 <div className="">
                   <label
                     for="age"
-                    className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
+                    className="tw-block tw-mt-2 tw-text-xs tw-font-semibold tw-text-gray-600 tw-uppercase"
                   >
                     Age
                   </label>
@@ -177,13 +177,13 @@ const BuyerRegister = () => {
                     placeholder="23"
                     autoComplete="age"
                     onChange={handleInput}
-                    className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                    className="tw-block tw-w-full tw-p-3 tw-mt-2 tw-text-gray-700 tw-bg-gray-200 tw-appearance-none tw-focus:outline-none tw-focus:bg-gray-300 tw-focus:shadow-inner"
                     required
                   />
 
                   <label
                     for="nic"
-                    className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
+                    className="tw-block tw-mt-2 tw-text-xs tw-font-semibold tw-text-gray-600 tw-uppercase"
                   >
                     NIC
                   </label>
@@ -194,12 +194,12 @@ const BuyerRegister = () => {
                     placeholder="********"
                     autoComplete="new-nic"
                     onChange={handleInput}
-                    className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                    className="tw-block tw-w-full tw-p-3 tw-mt-2 tw-text-gray-700 tw-bg-gray-200 tw-appearance-none tw-focus:outline-none tw-focus:bg-gray-300 tw-focus:shadow-inner"
                     required
                   />
                   <label
                     for="phone"
-                    className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
+                    className="tw-block tw-mt-2 tw-text-xs tw-font-semibold tw-text-gray-600 tw-uppercase"
                   >
                     Phone
                   </label>
@@ -210,12 +210,12 @@ const BuyerRegister = () => {
                     placeholder="0764376987"
                     autoComplete="phone"
                     onChange={handleInput}
-                    className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                    className="tw-block tw-w-full tw-p-3 tw-mt-2 tw-text-gray-700 tw-bg-gray-200 tw-appearance-none tw-focus:outline-none tw-focus:bg-gray-300 tw-focus:shadow-inner"
                     required
                   />
                   <label
                     for="gender"
-                    className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
+                    className="tw-block tw-mt-2 tw-text-xs tw-font-semibold tw-text-gray-600 tw-uppercase"
                   >
                     Gender
                   </label>
@@ -225,10 +225,10 @@ const BuyerRegister = () => {
                     <FormControlLabel value="male" control={<Radio />} label="Male" />
                   </RadioGroup>
                 </div>
-                <div className="ml-8">
+                <div className="tw-ml-8">
                   <label
                     for="address"
-                    className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
+                    className="tw-block tw-mt-2 tw-text-xs tw-font-semibold tw-text-gray-600 tw-uppercase"
                   >
                     Address
                   </label>
@@ -239,12 +239,12 @@ const BuyerRegister = () => {
                     placeholder="Colombo, Sri Lanka"
                     autoComplete="address"
                     onChange={handleInput}
-                    className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                    className="tw-block tw-w-full tw-p-3 tw-mt-2 tw-text-gray-700 tw-bg-gray-200 tw-appearance-none tw-focus:outline-none tw-focus:bg-gray-300 tw-focus:shadow-inner"
                     required
                   />
                   <label
                     for="password"
-                    className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
+                    className="tw-block tw-mt-2 tw-text-xs tw-font-semibold tw-text-gray-600 tw-uppercase"
                   >
                     Password
                   </label>
@@ -255,12 +255,12 @@ const BuyerRegister = () => {
                     placeholder="********"
                     autoComplete="new-password"
                     onChange={handleInput}
-                    className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                    className="tw-block tw-w-full tw-p-3 tw-mt-2 tw-text-gray-700 tw-bg-gray-200 tw-appearance-none tw-focus:outline-none tw-focus:bg-gray-300 tw-focus:shadow-inner"
                     required
                   />
                   <label
                     for="password-confirm"
-                    className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
+                    className="tw-block tw-mt-2 tw-text-xs tw-font-semibold tw-text-gray-600 tw-uppercase"
                   >
                     Confirm password
                   </label>
@@ -271,19 +271,19 @@ const BuyerRegister = () => {
                     placeholder="********"
                     autoComplete="new-password"
                     onChange={handleInput}
-                    className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                    className="tw-block tw-w-full tw-p-3 tw-mt-2 tw-text-gray-700 tw-bg-gray-200 tw-appearance-none tw-focus:outline-none tw-focus:bg-gray-300 tw-focus:shadow-inner"
                     required
                   />
                 </div>
               </div>
               <div>
-                <div className="flex flex-col items-center justify-center">
+                <div className="tw-flex tw-flex-col tw-items-center tw-justify-center">
                   <button
                     onClick={() => {
                       navigate('/otp')
                     }}
                     type="submit"
-                    className="w-5/12 py-3 mt-6 font-medium tracking-widest text-white uppercase bg-[#17d193] shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none"
+                    className="tw-w-5/12 tw-py-3 tw-mt-6 tw-font-medium tw-tracking-widest tw-text-white tw-uppercase tw-bg-[#17d193] tw-shadow-lg tw-focus:outline-none tw-hover:bg-gray-900 tw-hover:shadow-none"
                   >
                     Verify Your Account
                   </button>
@@ -291,7 +291,7 @@ const BuyerRegister = () => {
                     onClick={() => {
                       navigate('/login')
                     }}
-                    className="text-center mt-4 text-base text-gray-500 cursor-pointer hover:text-black"
+                    className="tw-text-center tw-mt-4 tw-text-base tw-text-gray-500 tw-cursor-pointer tw-hover:text-black"
                   >
                     Already registered?
                   </button>

@@ -59,10 +59,10 @@ export default function Login() {
       <TopNav />
 
       <div className="">
-        <div className="flex justify-center items-center min-h-screen place-items-center">
-          <div className="p-12 bg-white sm:w-8/12 md:w-8/12 lg:w-4/12">
-            <h1 class="text-xl font-semibold text-center">Sign In</h1>
-            <form class="mt-6" onSubmit={handleSubmit}>
+        <div className="tw-flex tw-justify-center tw-items-center tw-min-h-screen tw-place-items-center">
+          <div className="tw-p-12 tw-bg-white tw-sm:w-8/12 tw-md:w-8/12 tw-lg:w-4/12">
+            <h1 class="tw-text-xl tw-font-semibold tw-text-center">Sign In</h1>
+            <form class="tw-mt-6" onSubmit={handleSubmit}>
               <label for="email" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">
                 E-mail
               </label>
@@ -74,13 +74,13 @@ export default function Login() {
                 autocomplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                class="tw-block tw-w-full tw-p-3 tw-mt-2 tw-text-gray-700 tw-bg-gray-200 tw-appearance-none tw-focus:outline-none tw-focus:bg-gray-300 tw-focus:shadow-inner"
                 required
               />
 
               <label
                 for="password"
-                class="block mt-2 text-xs font-semibold text-gray-600 uppercase"
+                class="tw-block tw-mt-2 tw-text-xs tw-font-semibold tw-text-gray-600 tw-uppercase"
               >
                 Password
               </label>
@@ -92,32 +92,32 @@ export default function Login() {
                 autocomplete="new-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                class="tw-block tw-w-full tw-p-3 tw-mt-2 tw-text-gray-700 tw-bg-gray-200 tw-appearance-none tw-focus:outline-none tw-focus:bg-gray-300 tw-focus:shadow-inner"
                 required
               />
 
-              <div className="text-center">
+              <div className="tw-text-center">
                 <button
                   onClick={() => {
                     navigate('/forget-password')
                   }}
-                  class="text-center mt-4 text-base text-gray-500 cursor-pointer hover:text-black"
+                  class="tw-text-center tw-mt-4 tw-text-base tw-text-gray-500 tw-cursor-pointer tw-hover:text-black"
                 >
                   Forget Passowrd ?
                 </button>
               </div>
               <button
                 type="submit"
-                class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-[#17d193] shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none"
+                class="tw-w-full tw-py-3 tw-mt-6 tw-font-medium tw-tracking-widest tw-text-white tw-uppercase tw-bg-[#17d193] tw-shadow-lg tw-focus:outline-none tw-hover:bg-gray-900 tw-hover:shadow-none"
               >
                 Sign in
               </button>
-              <div className="text-center">
+              <div className="tw-text-center">
                 <button
                   onClick={() => {
                     navigate('/patient-registration')
                   }}
-                  class="text-center mt-4 text-base text-gray-500 cursor-pointer hover:text-black"
+                  class="tw-text-center tw-mt-4 tw-text-base tw-text-gray-500 tw-cursor-pointer tw-hover:text-black"
                 >
                   Haven't create an account yet ? Register Now !
                 </button>

@@ -49,7 +49,7 @@ export default function RegistrationIntro() {
                 navigate('/buyer-registration')
               }}
             >
-              Patient
+              Buyer
             </Button>
           </Col>
 
@@ -59,8 +59,12 @@ export default function RegistrationIntro() {
               onClick={() => {
                 navigate('/seller-registration')
               }}
+              style={{
+                color: 'green',
+                ':hover': { backgroundColor: 'white', borderColor: 'white' },
+              }}
             >
-              Staff
+              Seller
             </Button>
           </Col>
         </Row>
