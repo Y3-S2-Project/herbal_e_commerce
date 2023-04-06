@@ -8,12 +8,16 @@ import ProtectedRoutes from './ProtectedRoutes'
 import {
   Login,
   ForgetPassword,
-  BuyerRegister,
-  SellerRegister,
+  Register,
   RegistrationIntro,
   Unauthorized,
   Landing,
+  AboutUs,
+  FAQ,
+  NotFound,
+  ServicesPage,
 } from './views/common'
+
 const loading = (
   <Spinner animation="border" role="status">
     <span className="sr-only">Loading...</span>
@@ -33,8 +37,10 @@ function App() {
           <Route path="/login" name="Login" element={<Login />} />
           <Route path="/registration-intro" name="Reg-intro" element={<RegistrationIntro />} />
           <Route path="/forget-password" name="ForgetPassword" element={<ForgetPassword />} />
-          <Route path="/buyer-registration" name="BuyerRegister" element={<BuyerRegister />} />
-          <Route path="/seller-registration" name="SellerRegister" element={<SellerRegister />} />
+          <Route path="/aboutus" name="AboutUS" element={<AboutUs />} />
+          <Route path="/faq" name="FAQ" element={<FAQ />} />
+          <Route path="/services" name="ServicePage" element={<ServicesPage />} />
+          <Route path="/registration" name="Register" element={<Register />} />
           <Route element={<ProtectedRoutes allowedRoles={['ADMIN']} />}>
             <Route path="admin/*" name="Home" element={<AdminLayout />} />
           </Route>
@@ -42,6 +48,7 @@ function App() {
             {' '}
             <Route path="user/*" name="UserLayout" element={<UserLayout />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { TopNav } from '../../../components'
+
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
 
-import { axiosInstance } from '../../../services/core/axios'
+import { axiosInstance } from '../../../../services/core/axios'
 
-const BuyerRegister = () => {
+const SellerRegister = () => {
   //navigate variable
   const navigate = useNavigate()
   //useState
@@ -74,11 +74,10 @@ const BuyerRegister = () => {
 
   return (
     <>
-      <TopNav />
       <div className="">
         <div className="tw-flex tw-justify-center tw-items-center tw-min-h-screen tw-place-items-center">
           <div className="tw-p-12 tw-bg-white tw-sm:w-8/12 tw-md:w-8/12 tw-lg:w-8/12">
-            <h1 className="tw-text-3xl tw-font-semibold tw-text-center">Register Now !!!</h1>
+            <h1 className="tw-text-3xl tw-font-semibold tw-text-center">Seller Register Now !!!</h1>
             <form className="tw-mt-6 " onSubmit={handleSubmit}>
               <div className="tw-flex tw-sm:flex-col tw-md:flex-row tw-justify-center">
                 <div className="tw-mr-8">
@@ -283,7 +282,7 @@ const BuyerRegister = () => {
                       navigate('/otp')
                     }}
                     type="submit"
-                    className="tw-w-5/12 tw-py-3 tw-mt-6 tw-font-medium tw-tracking-widest tw-text-white tw-uppercase tw-bg-[#17d193] tw-shadow-lg tw-focus:outline-none tw-hover:bg-gray-900 tw-hover:shadow-none"
+                    className="tw-w-5/12 tw-py-3 tw-mt-6 tw-font-medium tw-tracking-widest tw-text-white tw-uppercase tw-bg-[#383634] tw-shadow-lg tw-focus:outline-none tw-hover:bg-gray-900 tw-hover:shadow-none"
                   >
                     Verify Your Account
                   </button>
@@ -304,4 +303,4 @@ const BuyerRegister = () => {
     </>
   )
 }
-export default BuyerRegister
+export default SellerRegister

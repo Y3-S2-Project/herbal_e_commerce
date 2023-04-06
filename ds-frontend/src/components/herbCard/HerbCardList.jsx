@@ -1,4 +1,4 @@
-import { Container,  Button } from 'react-bootstrap'
+import { Container, Button } from 'react-bootstrap'
 import HerbCard from './HerbCard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
@@ -7,29 +7,24 @@ import { useRef, useState } from 'react'
 export default function HerbCardList() {
   const containerRef = useRef(null) // Ref for the slider container
   const [scrollPos, setScrollPos] = useState(0) // State for the current scroll position
-
   const handleScrollLeft = () => {
-    const containerWidth = containerRef.current.clientWidth
-    const cardWidth = 250 // Assuming each card has a fixed width of 250px
-    const newPosition = Math.max(scrollPos - containerWidth, 0)
-    containerRef.current.style.transform = `translateX(-${newPosition}px)`
-    console.log(newPosition)
+    const container = containerRef.current
+    const cardWidth = 1440 // Assuming each card has a fixed width of 250px
+    const newPosition = Math.max(scrollPos - cardWidth, 0)
+    container.scrollLeft = newPosition
     setScrollPos(newPosition)
   }
 
   const handleScrollRight = () => {
-    const containerWidth = containerRef.current.clientWidth
-    const cardWidth = 250 // Assuming each card has a fixed width of 250px
-    const maxPosition = containerWidth - containerRef.current.scrollWidth
-    const newPosition = Math.min(scrollPos + containerWidth, maxPosition)
-    containerRef.current.style.transform = `translateX(-${newPosition}px)`
-    console.log(newPosition)
+    const container = containerRef.current
+    const cardWidth = 1440 // Assuming each card has a fixed width of 250px
+    const maxPosition = container.scrollWidth - container.clientWidth
+    const newPosition = Math.min(scrollPos + cardWidth, maxPosition)
+    container.scrollLeft = newPosition
     setScrollPos(newPosition)
   }
 
   const handleScroll = (event) => {
-
-
     if (event.type === 'mousemove' && !event.buttons) {
       // Ignore mousemove events if the left mouse button is not pressed
       return

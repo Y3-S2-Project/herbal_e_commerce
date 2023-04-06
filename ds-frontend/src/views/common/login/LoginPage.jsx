@@ -16,7 +16,7 @@ export default function Login() {
   //handleSubmit function
   const handleSubmit = (e) => {
     e.preventDefault()
-
+    //http://localhost:3001/api/auth/login
     //login user
     axiosInstance
       .post('/auth/login', { email, password })
@@ -108,7 +108,7 @@ export default function Login() {
               </div>
               <button
                 type="submit"
-                class="tw-w-full tw-py-3 tw-mt-6 tw-font-medium tw-tracking-widest tw-text-white tw-uppercase tw-bg-[#17d193] tw-shadow-lg tw-focus:outline-none tw-hover:bg-gray-900 tw-hover:shadow-none"
+                class="tw-w-full tw-py-3 tw-mt-6 tw-font-medium tw-tracking-widest tw-text-white tw-uppercase tw-bg-[#383634] tw-shadow-lg tw-focus:outline-none tw-hover:bg-gray-900 tw-hover:shadow-none"
               >
                 Sign in
               </button>

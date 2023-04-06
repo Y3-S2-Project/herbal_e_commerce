@@ -34,7 +34,8 @@ export default function TopBar(props) {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <i className="fas fa-user-circle fa-2x tcontainerbtn" id="iprofile"></i> Amal
+                <i className="fas fa-user-circle fa-2x tcontainerbtn" id="iprofile"></i>{' '}
+                {localStorage.getItem('name')}
               </button>
               <ul className="dropdown-menu">
                 <li>

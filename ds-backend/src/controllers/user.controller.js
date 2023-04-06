@@ -14,7 +14,7 @@ export const create = asyncHandler(async (req, res) => {
   if (result.status) return makeResponse({ res, ...result });
   return makeResponse({
     res,
-    status: 200,
+    status: 201,
     data: result,
     message: "User added successfully",
   });

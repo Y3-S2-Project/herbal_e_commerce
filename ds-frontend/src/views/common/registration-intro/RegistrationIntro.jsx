@@ -46,7 +46,7 @@ export default function RegistrationIntro() {
             <Button
               variant="outline-dark"
               onClick={() => {
-                navigate('/buyer-registration')
+                navigate('/registration')
               }}
             >
               Buyer
@@ -57,7 +57,7 @@ export default function RegistrationIntro() {
             <Button
               variant="success"
               onClick={() => {
-                navigate('/seller-registration')
+                navigate('/registration?seller=true')
               }}
               style={{
                 color: 'green',

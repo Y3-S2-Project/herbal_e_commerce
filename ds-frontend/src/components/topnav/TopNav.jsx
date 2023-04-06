@@ -104,11 +104,11 @@ function TopNav() {
                     aria-expanded="false"
                   >
                     <FontAwesomeIcon icon={faUser} />
-                    <>Amal</>
+                    <p className="tw-ml-5">{localStorage.getItem('name')}</p>
                   </button>
                   <ul className="dropdown-menu">
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="/user/dashboard">
                         Profile
                       </a>
                     </li>
@@ -131,14 +131,18 @@ function TopNav() {
             </div>
           )}
         </Navbar.Collapse>
-        <div className="ms-5 me-3 d-flex justify-content">
-          <div>
-            <FontAwesomeIcon icon={faShoppingCart} />
+        {localStorage.getItem('role') === 'BUYER' ? (
+          <div className="ms-5 me-3 d-flex justify-content">
+            <div>
+              <FontAwesomeIcon icon={faShoppingCart} />
+            </div>
+            <div className="ms-2">
+              <small className="text-muted fw-bold">Cart</small>
+            </div>
           </div>
-          <div className="ms-2">
-            <small className="text-muted fw-bold">Cart</small>
-          </div>
-        </div>
+        ) : (
+          <></>
+        )}
       </Container>
     </Navbar>
   )

@@ -3,15 +3,20 @@ import Landing from './landing/Landing'
 import Login from './login/LoginPage'
 import RegistrationIntro from './registration-intro/RegistrationIntro'
 import Unauthorized from './unauthorized/Unauthorized'
-import BuyerRegister from './buyerRegister/BuyerRegister'
-import SellerRegister from './sellerRegister/SellerRegister'
-
+import Register from './register/Register'
+import FAQ from './faq/FAQ'
+import ServicesPage from './services/ServicesPage'
+import AboutUs from './aboutUs/AboutUs'
+import NotFound from './notFound/NotFound'
 export {
   Login,
   Landing,
+  FAQ,
+  ServicesPage,
+  AboutUs,
   Unauthorized,
   RegistrationIntro,
-  BuyerRegister,
-  SellerRegister,
+  Register,
+  NotFound,
   ForgetPassword,
 }

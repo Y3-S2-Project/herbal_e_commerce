@@ -5,3 +5,7 @@
   margin: 5px;
   border-radius: 10px;
 }
+.badge {
+  transform: rotate(20deg);
+  transform-origin: right top;
+}

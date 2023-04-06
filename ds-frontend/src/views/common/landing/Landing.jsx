@@ -12,6 +12,7 @@ import Image1 from '../../../assets/images/landing-slider/image1.jpg'
 import Image2 from '../../../assets/images/landing-slider/image2.jpg'
 import Image3 from '../../../assets/images/landing-slider/image3.jpg'
 import Image4 from '../../../assets/images/landing-slider/image4.jpg'
+import { Footer } from '../../../components'
 
 export default function Landing() {
   const [images, setImages] = useState([
@@ -55,7 +56,7 @@ export default function Landing() {
         </Row>
         <Row className="vh-50 mt-0">
           <Col className="" xs={6}>
-            <h2 className="fw-bold"> Trending Goods</h2>
+            <h1 className="fw-bold  fs-5"> Trending Goods</h1>
           </Col>
           <Col className="d-flex justify-content-end align-items-center" xs={6}>
             <button type="button" className="btn  d-flex align-items-center  p-0">
@@ -70,6 +71,7 @@ export default function Landing() {
           </Col>
         </Row>
       </Container>
+      <Footer />
     </>
   )
 }
