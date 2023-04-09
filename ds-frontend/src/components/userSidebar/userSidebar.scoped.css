@@ -33,33 +33,34 @@ a:focus {
 
 .side-link:hover,
 .side-link:focus {
-  color: #218563;
+  color: #7d80fd;
 }
 
 .selected {
-  background-color: #36ecaf30;
-  border-left: #17d193 solid 4px;
+  background-color: #e7e7ff;
+  border-left: #7d80fd solid 4px;
 }
 
 .sidebar {
-  min-width: 200px;
-  max-width: 200px;
+  min-width: 250px;
+  max-width: 250px;
   background: #fff;
   color: #fff;
   transition: all 0.3s;
-  border-radius: 8px;
-  box-shadow: 0 0 2px 0 rgb(0 0 0 / 10%);
-  margin: 0;
+
   overflow-y: auto;
   overflow-x: hidden;
+  min-height: 720px;
+
   /* background-image: linear-gradient(#e5e5f2, #b7cfe8); */
 }
 
 .sidebar.active {
-  min-width: 75px;
+  min-width: 0;
   max-width: 0;
   text-align: center;
-  margin: 10;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 .sidebar.active .sidebar-header h3,
@@ -75,9 +76,8 @@ a:focus {
   text-align: left;
 }
 
-#sidebar.active ul li a {
-  padding: 20px 25px;
-
+.sidebar.active ul li a {
+  padding: 20px 10px;
   margin-left: 0;
   text-align: center;
   display: flex;
@@ -178,13 +178,13 @@ a.article:hover {
 ----------------------------------------------------- */
 
 @media (max-width: 768px) {
-  #sidebar {
+  .sidebar {
     min-width: 80px;
     max-width: 80px;
     text-align: center;
     margin-left: -80px !important;
   }
-  #sidebar .dropdown-toggle::after {
+  .sidebar .dropdown-toggle::after {
     top: auto;
     bottom: 10px;
     right: 50%;
@@ -192,35 +192,33 @@ a.article:hover {
     -ms-transform: translateX(50%);
     transform: translateX(50%);
   }
-  #sidebar.active {
+  .sidebar.active {
     margin-left: 0 !important;
   }
-  #sidebar .sidebar-header h3,
-  #sidebar .CTAs {
+  .sidebar .sidebar-header h3,
+  .sidebar .CTAs {
     display: none;
   }
-  #sidebar .sidebar-header strong {
+  .sidebar .sidebar-header strong {
     display: block;
   }
-  #sidebar ul li a {
-    padding: 20px 25px;
+  .sidebar ul li a {
+    padding: 20px 10px;
   }
-  #sidebar ul li a i {
+  .sidebar ul li a i {
     margin-right: 0;
     display: block;
   }
-  #sidebar ul ul a {
+  .sidebar ul ul a {
     padding: 10px !important;
   }
-  #sidebar {
+  .sidebar {
     margin-left: 0;
   }
-  #sidebarCollapse span {
+  .sidebarCollapse span {
     display: none;
   }
 }
-
-.active #last-navlink {
-}
-#last-navlink {
+#rimage-title {
+  width: 92%;
 }

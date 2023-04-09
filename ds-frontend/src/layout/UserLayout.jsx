@@ -12,6 +12,7 @@ const DefaultLayout = () => {
     const currentRoute = routes.find((route) => route.path === pathname)
     return currentRoute ? currentRoute.name : false
   }
+
   const breadcrumbs = getRouteName(currentLocation, routes)
   useEffect(() => {
     console.log(currentLocation)
@@ -22,7 +23,7 @@ const DefaultLayout = () => {
       <TopNav />
       <div className="container mt-2">
         <div className="row">
-          <p>Home / {breadcrumbs}</p>
+          <p>Home / {localStorage.getItem('userRole') === 'BUYER' ? 'Buyer' : 'Seller'}</p>
         </div>
 
         <div className="row">

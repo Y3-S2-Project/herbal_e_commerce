@@ -17,9 +17,9 @@ export default function SideBar(props) {
       <ul className="list-unstyled components font-color">
         <li className="text-center font-weight-bold">
           {!props.isActive ? (
-            <img id='rimage-title' alt="bit-logo" src={RImageTittle}></img>
+            <img id='rimage-title' alt="bit-logo" ></img>
           ) : (
-            <img alt="mini-logo" src={RImage}></img>
+            <img alt="mini-logo" ></img>
           )}
         </li>
         <li>
