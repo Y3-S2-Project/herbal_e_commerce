@@ -11,3 +11,4 @@ export const insertSeller = async (data) => {
 export const findSeller = async (filters) => {
   return await Seller.findOne(filters);
 };
+

@@ -4,6 +4,6 @@ export const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('name')
   localStorage.removeItem('authenticated')
-
+   
   window.location.replace('/login')
 }
