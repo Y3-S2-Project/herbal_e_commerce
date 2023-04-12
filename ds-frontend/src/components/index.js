@@ -3,7 +3,7 @@ import SideBar from './sidebar/SideBar'
 import TopBar from './topbar/TopBar'
 import UserSidebar from './userSidebar/UserSidebar'
 import Footer from './footer/Footer'
-
+import ItemAddModal from './itemAddModel/ItemAddModal'
 import TopNav from './topnav/TopNav'
 
-export { AppContent, TopBar, SideBar, UserSidebar, TopNav, Footer }
+export { AppContent, TopBar, SideBar, UserSidebar, TopNav, Footer, ItemAddModal }
