@@ -11,7 +11,7 @@ import CategoryIcon from '../../assets/images/navbar-icon/catagories-icon.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Form from 'react-bootstrap/Form'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import './topnav.scoped.css'
 function TopNav() {
   return (
@@ -133,9 +133,12 @@ function TopNav() {
         </Navbar.Collapse>
         {localStorage.getItem('role') === 'BUYER' ? (
           <div className="ms-5 me-3 d-flex justify-content">
-            <div>
-              <FontAwesomeIcon icon={faShoppingCart} />
-            </div>
+            <Link to='/shoppingcart'>
+              <div className="cart">
+                <FontAwesomeIcon icon={faShoppingCart} />
+                <span>0</span>
+              </div>
+            </Link>
             <div className="ms-2">
               <small className="text-muted fw-bold">Cart</small>
             </div>

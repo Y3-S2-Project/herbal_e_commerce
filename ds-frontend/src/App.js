@@ -17,6 +17,7 @@ import {
   NotFound,
   ServicesPage,
 } from './views/common'
+import ShoppingCart from './views/shoppingCart/ShoppingCart'
 
 const loading = (
   <Spinner animation="border" role="status">
@@ -41,6 +42,7 @@ function App() {
           <Route path="/faq" name="FAQ" element={<FAQ />} />
           <Route path="/services" name="ServicePage" element={<ServicesPage />} />
           <Route path="/registration" name="Register" element={<Register />} />
+          <Route path="/shoppingcart" name="ShoppingCart" element={<ShoppingCart />} />
           <Route element={<ProtectedRoutes allowedRoles={['ADMIN']} />}>
             <Route path="admin/*" name="Home" element={<AdminLayout />} />
           </Route>
