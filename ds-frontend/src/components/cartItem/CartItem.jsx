@@ -22,7 +22,7 @@ export default function CartItem() {
         {/* div which contains 3 p tags and a tags flex */}
         <div class="details tw-flex tw-justify-evenly tw-p-5 tw-m-4 ">
           <div class="middle tw-items-center tw-mr-2 tw-ml-2">
-            <p>Blackberry bluestem</p>
+            <p className="tw-font-bold">Blackberry bluestem</p>
             <p class="tw-text-gray-400">500g</p>
             <div class="tw-w-8 tw-h-8 tw-bg-white tw-flex tw-justify-center tw-items-center tw-border tw-border-black tw-mt-2">
               <div class="tw-w-6 tw-h-6 tw-bg-green-500 tw-rounded-full"></div>

@@ -4,17 +4,15 @@ import { TopNav } from '../../components'
 
 export default function ShoppingCart() {
   return (
-    // <div>
-    //   <CartItem />
-    //   <CartItem />
-    //   <CartItem />
-    //   <CartItem />
-    // </div>
-    <div>
+    <>
       <TopNav />
       <h1 className="tw-font-bold tw-text-lg tw-m-4">Shopping Cart</h1>
+      <div className="tw-flex tw-justify-end tw-items-end tw-text-right tw-max-w-3xl tw-mx-auto tw-p-1 tw-flex-col">
+        <a href="#" class="tw-text-red-500 tw-font-bold">
+          Remove
+        </a>
+      </div>
       <div style={{ maxHeight: '450px', overflowY: 'auto' }}>
-        {/* Render cart items in a scrollable view */}
         <CartItem />
         <CartItem />
         <CartItem />
@@ -33,6 +31,6 @@ export default function ShoppingCart() {
           Checkout
         </a>
       </div>
-    </div>
+    </>
   )
 }
