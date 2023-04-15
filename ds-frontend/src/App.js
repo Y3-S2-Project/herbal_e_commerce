@@ -18,6 +18,7 @@ import {
   ServicesPage,
 } from './views/common'
 import ShoppingCart from './views/shoppingCart/ShoppingCart'
+import ItemView from './views/itemView/ItemView'
 
 const loading = (
   <Spinner animation="border" role="status">
@@ -43,6 +44,7 @@ function App() {
           <Route path="/services" name="ServicePage" element={<ServicesPage />} />
           <Route path="/registration" name="Register" element={<Register />} />
           <Route path="/shoppingcart" name="ShoppingCart" element={<ShoppingCart />} />
+          <Route path='/itemview' name="ItemView" element={<ItemView/>}/>
           <Route element={<ProtectedRoutes allowedRoles={['ADMIN']} />}>
             <Route path="admin/*" name="Home" element={<AdminLayout />} />
           </Route>

@@ -13,6 +13,7 @@ import Image2 from '../../../assets/images/landing-slider/image2.jpg'
 import Image3 from '../../../assets/images/landing-slider/image3.jpg'
 import Image4 from '../../../assets/images/landing-slider/image4.jpg'
 import { Footer } from '../../../components'
+import { Link } from 'react-router-dom'
 
 export default function Landing() {
   const [images, setImages] = useState([
@@ -42,9 +43,11 @@ export default function Landing() {
               className="rounded-5"
               style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)', height: '400px' }}
             />
-            <button className="position-absolute bottom-0 start-0 ms-5 mb-5 btn btn-primary btn-banner">
-              Shop Now
-            </button>
+            <Link to={`/itemview`}>
+              <button className="position-absolute bottom-0 start-0 ms-5 mb-5 btn btn-primary btn-banner">
+                Shop Now
+              </button>
+            </Link>
             <div style={{ paddingBottom: '50px' }}></div>{' '}
             {/* Add some padding to the bottom of the column */}
           </Col>
