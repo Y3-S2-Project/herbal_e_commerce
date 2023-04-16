@@ -47,7 +47,7 @@ function TopNav() {
             <div className="collapse nav-categories" id="categories-menu">
               <ul className="list-unstyled">
                 <li>
-                  <NavLink to="/category1">Category 1</NavLink>
+                  <NavLink to="/orderview">My Orders</NavLink>
                 </li>
                 <li>
                   <NavLink to="/category2">Category 2</NavLink>
@@ -133,7 +133,7 @@ function TopNav() {
         </Navbar.Collapse>
         {localStorage.getItem('role') === 'BUYER' ? (
           <div className="ms-5 me-3 d-flex justify-content">
-            <Link to='/shoppingcart'>
+            <Link to="/shoppingcart">
               <div className="cart">
                 <FontAwesomeIcon icon={faShoppingCart} />
                 <span>0</span>
