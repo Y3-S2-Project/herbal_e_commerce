@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import { type } from "os";
 
 const SellerSchema = new Schema(
   {
@@ -11,6 +12,12 @@ const SellerSchema = new Schema(
       type: String,
       required: true,
     },
+    items: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Item",
+      },
+    ],
   },
   {
     timestamps: true,
