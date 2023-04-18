@@ -1,5 +1,9 @@
 import React, { Suspense } from 'react'
+
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
+
 
 import Spinner from 'react-bootstrap/Spinner'
 
@@ -26,6 +30,7 @@ const loading = (
     <span className="sr-only">Loading...</span>
   </Spinner>
 )
+
 
 const AdminLayout = React.lazy(() => import('./layout/AdminLayout'))
 const UserLayout = React.lazy(() => import('./layout/UserLayout'))

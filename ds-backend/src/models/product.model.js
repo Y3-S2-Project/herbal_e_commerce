@@ -4,15 +4,19 @@ const productSchema = new mongoose.Schema({
   pPid: {
     type: String,
     required: true,
+    unique: true,
   },
   pName: {
     type: String,
+    required: true,
   },
   pDescription: {
     type: String,
+    required: true,
   },
   pPrice: {
     type: Number,
+    required: true,
   },
   pStatus: {
     type: String,
@@ -24,14 +28,15 @@ const productSchema = new mongoose.Schema({
   },
   pImages: {
     type: [String],
+    required: true,
   },
   pQuantity: {
     type: Number,
     default: 0,
+    required: true,
   },
   pCategory: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Category",
+    type: String,
   },
   pVisible: {
     type: Boolean,
@@ -39,6 +44,7 @@ const productSchema = new mongoose.Schema({
   },
   pWeight: {
     type: Number,
+    required: true,
   },
   pSaleStatus: {
     type: Boolean,

@@ -1,17 +1,17 @@
 import React from 'react'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
-const AllItems = React.lazy(() => import('./views/sellerVIews/allItems/AllItems'))
+const Products = React.lazy(() => import('./views/products/sellerVIews/productManagement/Products'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
 
   { path: '/dashboard', name: 'SellerDashboard', element: Dashboard, permissions: 'isSeller' },
   { path: '/dashboard', name: 'BuyerDashboard', element: Dashboard, permissions: 'isBuyer' },
   {
-    path: '/item-management/all-items',
-    name: 'AllItems',
-    element: AllItems,
-    permissions: 'isBuyer',
+    path: '/product-management/products',
+    name: 'Products',
+    element: Products,
+    permissions: 'isSeller',
   },
 ]
 

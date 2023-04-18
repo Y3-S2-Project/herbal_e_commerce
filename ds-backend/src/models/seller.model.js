@@ -3,7 +3,7 @@ import { type } from "os";
 
 const SellerSchema = new Schema(
   {
-    sellerName: {
+    sellerName: { 
       type: String,
       required: true,
     },
@@ -12,10 +12,10 @@ const SellerSchema = new Schema(
       type: String,
       required: true,
     },
-    items: [
+    products: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Item",
+        ref: "Product",
       },
     ],
   },
