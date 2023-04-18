@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.use("/auth", authRouter);
 router.use("/user", userRouter);
-router.use("/items", productRouter);
+router.use("/product", productRouter);
 
 export default router;

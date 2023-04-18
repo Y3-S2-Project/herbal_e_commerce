@@ -21,6 +21,7 @@ export const protect = asyncHandler(async (req, res, next) => {
   next();
 });
 
+
 export const adminProtect = asyncHandler(async (req, res, next) => {
   if (req.user.role !== "ADMIN")
     return makeResponse({ res, status: 403, message: "Unauthorized" });
