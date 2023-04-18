@@ -18,6 +18,11 @@ const SellerSchema = new Schema(
         ref: "Product",
       },
     ],
+    //object ids of reviews for this seller
+    sellerReviews: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Review",
+    },
   },
   {
     timestamps: true,
