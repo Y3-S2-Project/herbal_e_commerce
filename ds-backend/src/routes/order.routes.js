@@ -1,9 +1,9 @@
 const express = require("express");
-const { protect } = require("../middleware/auth.middleware");
+import { protect } from "../middleware/auth.js";
 const {createOrder, getAllOrders, getOrderById, updateOrderStatus, deleteOrder} = require("../controllers/order.controller");
-const router = express.Router();
+const orderRouter = express.Router();
 
-router.route("/").post(protect, createOrder).get(protect, getAllOrders);
-router.route("/:orderId").get(protect, getOrderById).put(protect, updateOrderStatus).delete(protect, deleteOrder);
+orderRouter.route("/").post(protect, createOrder).get(protect, getAllOrders);
+orderRouter.route("/:orderId").get(protect, getOrderById).put(protect, updateOrderStatus).delete(protect, deleteOrder);
 
-module.exports = router;
+export default orderRouter;

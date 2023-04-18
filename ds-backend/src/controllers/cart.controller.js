@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const Cart = require("../models/cart.model");
+import Cart from "../models/cart.model.js";
 
 //Create new shopping cart
 const createCart = asyncHandler(async (req, res) => {
