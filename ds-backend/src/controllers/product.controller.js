@@ -69,31 +69,56 @@ export const postAddProduct = asyncHandler(async (req, res) => {
       );
     }
   } catch (err) {
-
     console.log(err);
     return res.status(500).json({ error: "Error creating product" });
   }
 });
 
-// const product = newProduct.save((err) => {
-//   if (err) {
-//     // handle any errors that occur
-//     return res.status(500).json({ error: "Error creating new product" });
-//   }
 
-//   // once the new product is saved successfully, add it to the seller's product list
-//   Seller.findOneAndUpdate(
-//     { _id: seller._id },
-//     { $push: { products: newProduct._id } },
-//     { new: true },
-//     (err, updatedSeller) => {
-//       if (err) {
-// //         // handle any errors that occur
-//         return res.status(500).json({ error: "Error updating seller" });
-//       }
 
-//       // return a success response with the updated seller object
-//       return res.status(200).json({ seller: updatedSeller });
-//     }
-//   );
-// });
+export const getDeleteProduct = asyncHandler(async (req, res) => {
+  const { seller } = req.user;
+  const { id } = req.params;
+
+  try {
+    // find the product by id and delete it
+    const product = await Product.findByIdAndDelete(id);
+    if (product) {
+      // once the product is deleted successfully, remove it from the seller's product list
+      Seller.findOneAndUpdate(
+        { _id: seller._id },
+        { $pull: { products: id } },
+        { new: true },
+        (err, updatedSeller) => {
+          if (err) {
+            console.log(err);
+            // handle any errors that occur
+            return res.status(500).json({ error: "Error updating seller" });
+          }
+
+          // return a success response with the updated seller object
+          return res
+            .status(200)
+            .json({ success: "Product deleted successfully" });
+        }
+      );
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: "Error deleting product" });
+  }
+});
+
+export const editProduct = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const editedProduct = Product.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+
+       return res.json({ success: "Product edit successfully" });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: "Error editing product" });
+  }
+});
