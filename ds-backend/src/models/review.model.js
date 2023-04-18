@@ -12,9 +12,9 @@ const ReviewSchema = new Schema(
       ref: "User",
       required: true,
     },
-    item: {
+    product: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Item",
+      ref: "Product",
     },
     seller: {
       type: mongoose.Schema.Types.ObjectId,
