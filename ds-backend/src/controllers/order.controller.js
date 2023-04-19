@@ -37,7 +37,7 @@ const getAllOrders = asyncHandler(async (req, res) => {
 //Get order by order id
 const getOrderById = asyncHandler(async (req, res) => {
   try {
-    const order = await Order.findOne(req.params.orderId)
+    const order = await Order.findOne({orderId:req.params.orderId})
       .populate("userId", "name")
       .populate("products.product", "quantity");
 
@@ -54,7 +54,7 @@ const getOrderById = asyncHandler(async (req, res) => {
 //Update order status
 const updateOrderStatus = asyncHandler(async (req, res) => {
     try {
-        const order = await Order.findOne(req.params.orderId);
+        const order = await Order.findOne({ orderId: req.params.orderId });
         if (order) {
         order.orderStatus = req.body.orderStatus;
         const updatedOrder = await order.save();
@@ -70,7 +70,7 @@ const updateOrderStatus = asyncHandler(async (req, res) => {
 //Delete order
 const deleteOrder = asyncHandler(async (req, res) => {
   try {
-    const order = await Order.findOne(req.params.orderId);
+    const order = await Order.findOne({ orderId: req.params.orderId });
     if (order) {
       await order.remove();
       res.status(200).json({ message: "Order deleted successfully" });
