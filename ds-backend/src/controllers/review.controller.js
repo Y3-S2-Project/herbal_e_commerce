@@ -9,6 +9,7 @@ import {
   deleteSellerReviewService,
   updateSellerReviewService,
   getReviewByIdService,
+  getReviewsService,
 } from "../services/review.services";
 
 export const getAllReviewsController = asyncHandler(async (req, res) => {
@@ -35,6 +36,25 @@ export const getReviewByIdController = asyncHandler(async (req, res) => {
     status: 200,
     data: response.data,
     message: "Review retrieved succesfully",
+  });
+});
+
+export const getReviewsController = asyncHandler(async (req, res) => {
+  // console.log("Review data", req.body)
+  // res.json(req.body)
+  const response = await getReviewsService(req.body);
+  if (!response)
+    return makeResponse({
+      res,
+      status: 500,
+      message: "Could not retrieve the reviews",
+    });
+  if (response.status) return makeResponse({ res, ...response });
+  return makeResponse({
+    res,
+    status: 200,
+    data: response.data,
+    message: "Reviews retrieved succesfully",
   });
 });
 

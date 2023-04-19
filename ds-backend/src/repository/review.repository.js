@@ -47,6 +47,31 @@ export const getReviewByIdRepository = async (review_id) => {
   }
 };
 
+export const getReviewsRepository = async (reviewData) => {
+  try {
+    const reviews = await Review.find(reviewData);
+    if (!reviews) {
+      return {
+        status: 404,
+        message: "Reviews not found",
+      };
+    }
+    return {
+      status: 200,
+      data: reviews,
+      message: "Reviews retrieved successfully",
+    };
+  } catch (err) {
+    console.error(
+      `An error occurred when retrieving reviews - err: ${err.message}`
+    );
+    return {
+      status: 500,
+      message: "Could not retrieve the reviews",
+    };
+  }
+};
+
 export const createProductReviewRepository = async (reviewData, product_id) => {
   const product = await Product.findById(product_id);
   if (!product) {

@@ -7,11 +7,16 @@ import {
   deleteSellerReviewRepository,
   updateSellerReviewRepository,
   getReviewByIdRepository,
+  getReviewsRepository,
 } from "../repository/review.repository.js";
 
 export const getAllReviewsService = async () => {
   const reviews = await getAllReviewsRepository();
   return reviews;
+};
+
+export const getReviewsService = async (reviewData) => {
+  return await getReviewsRepository(reviewData);
 };
 
 export const getReviewByIdService = async (review_id) => {
