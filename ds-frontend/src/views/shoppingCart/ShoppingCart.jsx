@@ -1,24 +1,79 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CartItem from '../../components/cartItem/CartItem'
 import { TopNav } from '../../components'
 import { Col, Container, Row } from 'react-bootstrap'
 import './shoppingCart.css';
+import axios from 'axios'
 
 export default function ShoppingCart() {
+  const [totalPrice, setTotalPrice] = React.useState(0);
+  const [cart, setCart] = React.useState([])
+  const [userId, setUserId] = React.useState('')
+  const [cartId, setCartId] = React.useState('')
+  const [cartRemoved, setCartRemoved] = React.useState(false)
+
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+  }
+
+  axios.get('http://localhost:3001/api/cart/getTotalPrice/642d7b2fadc38c896ac0a75e',config).then((response)=>{
+    console.log(response.data);
+    setTotalPrice(response.data.totalPrice);
+  })
+  .catch((error)=>{
+    console.log(error)
+  });
+
+  const handleRemove = () => {
+    axios
+      .delete('http://localhost:3001/api/cart/642d7b2fadc38c896ac0a75e', config)
+      .then((response) => {
+        console.log('Deleted')
+        setCart([]);
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  //remove one product from cart
+  const handleRemoveProduct = (productId,e) => {
+    e.preventDefault();
+    axios
+      .delete('http://localhost:3001/api/cart/642d7b2fadc38c896ac0a75e/' + productId, config)
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  useEffect(()=>{
+    axios
+      .get('http://localhost:3001/api/cart/642d7b2fadc38c896ac0a75e', config)
+      .then((response) => {
+        console.log(response.data)
+        setUserId(response.data.userId)
+        setCartId(response.data.cartId)
+        setCart(response.data.products)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  },[cart])
+
   return (
     <>
       <TopNav />
       <h1 className="tw-font-bold tw-mx-4 tw-my-2 tw-text-2xl ">Shopping Cart</h1>
       <div className="tw-flex tw-justify-end tw-items-end tw-text-right tw-max-w-3xl tw-mx-auto tw-p-1 tw-flex-col">
-        <a href="#" class="tw-text-red-500 tw-font-bold">
+        <a href="#" class="tw-text-red-500 tw-font-bold" onClick={handleRemove}>
           Remove
         </a>
       </div>
       <div style={{ maxHeight: '450px', overflowY: 'auto' }}>
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
+        <CartItem cart={cart} handleRemoveProduct={handleRemoveProduct} />
       </div>
       <br />
       <div className="tw-max-w-3xl tw-mx-auto">
@@ -34,7 +89,7 @@ export default function ShoppingCart() {
         >
           Checkout
         </a> */}
-        <Container>
+        <Container className="cart-footer">
           <Row>
             <Col></Col>
             <Col></Col>
@@ -42,7 +97,7 @@ export default function ShoppingCart() {
               <Row className="tw-font-bold">Sub Total</Row>
               <Row className="tw-text-gray-400">2 Items</Row>
             </Col>
-            <Col className="tw-text-right tw-font-bold tw-text-2xl">$25000</Col>
+            <Col className="tw-text-right tw-font-bold tw-text-2xl">Rs. {totalPrice}</Col>
           </Row>
           <Row>
             <Col></Col>
