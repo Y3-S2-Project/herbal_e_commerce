@@ -7,6 +7,7 @@ import axios from 'axios'
 
 export default function ShoppingCart() {
   const [totalPrice, setTotalPrice] = React.useState(0);
+  const [noOfItems, setNoOfItems] = React.useState(0);
   const [cart, setCart] = React.useState([])
   const [userId, setUserId] = React.useState('')
   const [cartId, setCartId] = React.useState('')
@@ -16,6 +17,7 @@ export default function ShoppingCart() {
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
   }
 
+  //get total price of cart
   axios.get('http://localhost:3001/api/cart/getTotalPrice/642d7b2fadc38c896ac0a75e',config).then((response)=>{
     console.log(response.data);
     setTotalPrice(response.data.totalPrice);
@@ -24,6 +26,18 @@ export default function ShoppingCart() {
     console.log(error)
   });
 
+  //get no of items in the cart
+  axios
+    .get('http://localhost:3001/api/cart/getCartCount/642d7b2fadc38c896ac0a75e', config)
+    .then((response) => {
+      console.log(response.data)
+      setNoOfItems(response.data.count)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
+  //remove all items from cart
   const handleRemove = () => {
     axios
       .delete('http://localhost:3001/api/cart/642d7b2fadc38c896ac0a75e', config)
@@ -49,6 +63,7 @@ export default function ShoppingCart() {
       })
   }
 
+  //get the cart
   useEffect(()=>{
     axios
       .get('http://localhost:3001/api/cart/642d7b2fadc38c896ac0a75e', config)
@@ -95,7 +110,7 @@ export default function ShoppingCart() {
             <Col></Col>
             <Col>
               <Row className="tw-font-bold">Sub Total</Row>
-              <Row className="tw-text-gray-400">2 Items</Row>
+              <Row className="tw-text-gray-400">{noOfItems} Items</Row>
             </Col>
             <Col className="tw-text-right tw-font-bold tw-text-2xl">Rs. {totalPrice}</Col>
           </Row>

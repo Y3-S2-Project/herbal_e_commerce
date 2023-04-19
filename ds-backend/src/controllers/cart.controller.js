@@ -128,11 +128,30 @@ const getTotalPrice = asyncHandler(async (req, res) => {
   }
 });
 
+//Get the count of products in the cart
+const getCartCount = asyncHandler(async (req, res) => {
+  try {
+    const cart = await Cart.findOne({ userId: req.params.userId });
+    if (cart) {
+      let count = 0;
+      cart.products.forEach((item) => {
+        count += 1;
+      });
+      res.status(200).json({ count });
+    } else {
+      res.status(404).json({ message: "Cart not found" });
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = {
     createCart, 
     getCartByUserId,
     updateCart,
     deleteCart,
     deleteProductFromCart,
-    getTotalPrice
+    getTotalPrice,
+    getCartCount
 }
