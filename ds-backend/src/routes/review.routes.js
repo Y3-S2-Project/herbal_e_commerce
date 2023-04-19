@@ -8,11 +8,13 @@ import {
   createSellerReviewController,
   deleteSellerReviewController,
   updateSellerReviewController,
+  getReviewByIdController,
 } from "../controllers/review.controller";
 
 const userRouter = express.Router();
 
 userRouter.get("/", getAllReviewsController);
+userRouter.get("/:review_id", getReviewByIdController);
 
 userRouter.post("/products/create", createProductReviewController);
 userRouter.post("/sellers/create", createSellerReviewController);

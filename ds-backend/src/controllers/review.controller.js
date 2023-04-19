@@ -8,6 +8,7 @@ import {
   createSellerReviewService,
   deleteSellerReviewService,
   updateSellerReviewService,
+  getReviewByIdService,
 } from "../services/review.services";
 
 export const getAllReviewsController = asyncHandler(async (req, res) => {
@@ -17,6 +18,23 @@ export const getAllReviewsController = asyncHandler(async (req, res) => {
     status: 200,
     data: reviews,
     message: "Reviews retrieved succesfully",
+  });
+});
+
+export const getReviewByIdController = asyncHandler(async (req, res) => {
+  const response = await getReviewByIdService(req.params.review_id);
+  if (!response)
+    return makeResponse({
+      res,
+      status: 500,
+      message: "Could not retrieve the review",
+    });
+  if (response.status) return makeResponse({ res, ...response });
+  return makeResponse({
+    res,
+    status: 200,
+    data: response.data,
+    message: "Review retrieved succesfully",
   });
 });
 
@@ -127,3 +145,4 @@ export const updateSellerReviewController = asyncHandler(async (req, res) => {
     message: "Seller Review updated succesfully",
   });
 });
+

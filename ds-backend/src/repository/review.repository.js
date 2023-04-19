@@ -22,6 +22,31 @@ export const getAllReviewsRepository = async () => {
   }
 };
 
+export const getReviewByIdRepository = async (review_id) => {
+  try {
+    const review = await Review.findById(review_id);
+    if (!review) {
+      return {
+        status: 404,
+        message: "Review not found",
+      };
+    }
+    return {
+      status: 200,
+      data: review,
+      message: "Review retrieved successfully",
+    };
+  } catch (err) {
+    console.error(
+      `An error occurred when retrieving a review by id - err: ${err.message}`
+    );
+    return {
+      status: 500,
+      message: "Could not retrieve the review",
+    };
+  }
+};
+
 export const createProductReviewRepository = async (reviewData, product_id) => {
   const product = await Product.findById(product_id);
   if (!product) {
@@ -58,39 +83,39 @@ export const createProductReviewRepository = async (reviewData, product_id) => {
 };
 
 export const createSellerReviewRepository = async (reviewData, seller_id) => {
-    const seller = await Seller.findById(seller_id);
-    if (!seller) {
-      return {
-        status: 404,
-        message: "Seller not found",
-      };
-    }
-  
-    const review = new Review({
-      ...reviewData,
-      seller: seller_id,
-    });
-  
-    try {
-      const savedReview = await review.save();
-      // Add the new review to the seller's sReviews array
-      seller.sellerReviews.push(savedReview._id);
-      await seller.save();
-      return {
-        status: 200,
-        data: savedReview,
-        message: "Seller Review created successfully",
-      };
-    } catch (err) {
-      console.error(
-        `An error occurred when creating a seller review - err: ${err.message}`
-      );
-      return {
-        status: 500,
-        message: "Could not create the seller review",
-      };
-    }
-  };
+  const seller = await Seller.findById(seller_id);
+  if (!seller) {
+    return {
+      status: 404,
+      message: "Seller not found",
+    };
+  }
+
+  const review = new Review({
+    ...reviewData,
+    seller: seller_id,
+  });
+
+  try {
+    const savedReview = await review.save();
+    // Add the new review to the seller's sReviews array
+    seller.sellerReviews.push(savedReview._id);
+    await seller.save();
+    return {
+      status: 200,
+      data: savedReview,
+      message: "Seller Review created successfully",
+    };
+  } catch (err) {
+    console.error(
+      `An error occurred when creating a seller review - err: ${err.message}`
+    );
+    return {
+      status: 500,
+      message: "Could not create the seller review",
+    };
+  }
+};
 
 export const deleteProductReviewRepository = async (review_id) => {
   try {
@@ -122,32 +147,32 @@ export const deleteProductReviewRepository = async (review_id) => {
 };
 
 export const deleteSellerReviewRepository = async (review_id) => {
-    try {
-        const deletedReview = await Review.findByIdAndDelete(review_id);
-        if (!deletedReview) {
-            return {
-                status: 404,
-                message: "Review not found",
-            };
-        }
-        await Seller.updateOne(
-            { _id: deletedReview.seller },
-            { $pull: { sellerReviews: deletedReview._id } }
-        );
-        return {
-            status: 200,
-            data: deletedReview,
-            message: "Seller Review deleted successfully",
-        };
-    } catch (err) {
-        console.error(
-            `An error occurred when deleting a seller review - err: ${err.message}`
-        );
-        return {
-            status: 500,
-            message: "Could not delete the seller review",
-        };
+  try {
+    const deletedReview = await Review.findByIdAndDelete(review_id);
+    if (!deletedReview) {
+      return {
+        status: 404,
+        message: "Review not found",
+      };
     }
+    await Seller.updateOne(
+      { _id: deletedReview.seller },
+      { $pull: { sellerReviews: deletedReview._id } }
+    );
+    return {
+      status: 200,
+      data: deletedReview,
+      message: "Seller Review deleted successfully",
+    };
+  } catch (err) {
+    console.error(
+      `An error occurred when deleting a seller review - err: ${err.message}`
+    );
+    return {
+      status: 500,
+      message: "Could not delete the seller review",
+    };
+  }
 };
 
 export const updateProductReviewRepository = async (
@@ -212,63 +237,62 @@ export const updateProductReviewRepository = async (
 };
 
 export const updateSellerReviewRepository = async (
-    review_id,
-    user_id,
-    reviewData
+  review_id,
+  user_id,
+  reviewData
 ) => {
-    try {
-        const review = await Review.findById(review_id);
-        //check if the review exists
-        if (!review) {
-            return {
-                status: 404,
-                message: "Review not found",
-            };
-        }
-        //check if the user created the review
-        if (review.user.toString() !== user_id) {
-            return {
-                status: 401,
-                message: "User not authorized",
-            };
-        }
-        //check if the seller exists
-        const seller = await Seller.findById(review.seller);
-        if (!seller) {
-            return {
-                status: 404,
-                message: "Seller not found",
-            };
-        }
-        //check if the review exists in the seller's sellerReviews array
-        const existingReview = seller.sellerReviews.find(
-            (r) => r.toString() === review_id
-        );
-        if (!existingReview) {
-            return {
-                status: 404,
-                message: "Review not found for this seller",
-            };
-        }
-        //update the review
-        const updatedReview = await Review.findByIdAndUpdate(
-            review_id,
-            reviewData,
-            { new: true }
-        );
-        return {
-            status: 200,
-            data: updatedReview,
-            message: "Seller Review updated successfully",
-        };
-    } catch (err) {
-        console.error(
-            `An error occurred when updating a seller review - err: ${err.message}`
-        );
-        return {
-            status: 500,
-            message: "Could not update the seller review",
-        };
+  try {
+    const review = await Review.findById(review_id);
+    //check if the review exists
+    if (!review) {
+      return {
+        status: 404,
+        message: "Review not found",
+      };
     }
+    //check if the user created the review
+    if (review.user.toString() !== user_id) {
+      return {
+        status: 401,
+        message: "User not authorized",
+      };
+    }
+    //check if the seller exists
+    const seller = await Seller.findById(review.seller);
+    if (!seller) {
+      return {
+        status: 404,
+        message: "Seller not found",
+      };
+    }
+    //check if the review exists in the seller's sellerReviews array
+    const existingReview = seller.sellerReviews.find(
+      (r) => r.toString() === review_id
+    );
+    if (!existingReview) {
+      return {
+        status: 404,
+        message: "Review not found for this seller",
+      };
+    }
+    //update the review
+    const updatedReview = await Review.findByIdAndUpdate(
+      review_id,
+      reviewData,
+      { new: true }
+    );
+    return {
+      status: 200,
+      data: updatedReview,
+      message: "Seller Review updated successfully",
+    };
+  } catch (err) {
+    console.error(
+      `An error occurred when updating a seller review - err: ${err.message}`
+    );
+    return {
+      status: 500,
+      message: "Could not update the seller review",
+    };
+  }
 };
-

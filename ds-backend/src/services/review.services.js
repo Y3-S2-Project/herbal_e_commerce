@@ -6,11 +6,17 @@ import {
   createSellerReviewRepository,
   deleteSellerReviewRepository,
   updateSellerReviewRepository,
+  getReviewByIdRepository,
 } from "../repository/review.repository.js";
 
 export const getAllReviewsService = async () => {
   const reviews = await getAllReviewsRepository();
   return reviews;
+};
+
+export const getReviewByIdService = async (review_id) => {
+  const review = await getReviewByIdRepository(review_id);
+  return review;
 };
 
 export const createProductReviewService = async (review) => {
