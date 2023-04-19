@@ -1,0 +1,13 @@
+.signle-product-view {
+  max-height: 86vh !important;
+  min-height: 86vh !important;
+}
+.item-add-component {
+  background: red;
+  padding: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+
+  border-top: 1px solid #e6e6e6;
+  width: 90%;
+}

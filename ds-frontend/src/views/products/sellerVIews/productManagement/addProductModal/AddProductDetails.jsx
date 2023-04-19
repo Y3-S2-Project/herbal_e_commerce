@@ -15,14 +15,14 @@ const AddProductDetail = () => {
   const [selectedFile, setSelectedFile] = useState(null)
   const [error, setError] = useState('')
   const fileInputRef = useRef(null)
-  const [selectedImages, setSelectedImages] = useState([])
+
 
   const [imageAdded, setImageAdded] = useState(false)
 
   const [fData, setFdata] = useState({
     pName: '',
     pDescription: '',
-    pStatus: 'Active',
+    pStatus: '',
     pImages: [], // Initial value will be null or empty array
     pCategory: '',
     pPrice: '0.0',
@@ -71,7 +71,7 @@ const AddProductDetail = () => {
           pName: '',
           pDescription: '',
           pImages: [],
-          pStatus: 'Active',
+          pStatus: '',
           pCategory: '',
           pPrice: '',
           pQuantity: '',
@@ -86,7 +86,7 @@ const AddProductDetail = () => {
             pName: '',
             pDescription: '',
             pImages: [],
-            pStatus: 'Active',
+            pStatus: '',
             pCategory: '',
             pPrice: '',
             pQuantity: 0,

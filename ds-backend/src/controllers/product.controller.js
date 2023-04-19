@@ -1,7 +1,7 @@
 import Product from "../models/product.model";
 import Seller from "../models/seller.model";
 import asyncHandler from "../middleware/async.js";
-
+import { v4 as uuidv4 } from "uuid";
 import { makeResponse } from "../utils/response";
 
 export const getAllProduct = asyncHandler(async (req, res) => {
@@ -34,7 +34,7 @@ export const postAddProduct = asyncHandler(async (req, res) => {
 
   // create a new product object with any relevant data
   const newProduct = new Product({
-    pPid: "PID00" + (parseInt(await getProductCount()) + 1),
+    pPid: `PID${uuidv4()}`,
     pName: req.body.pName,
     pDescription: req.body.pDescription,
     pStatus: req.body.pStatus,
@@ -73,8 +73,6 @@ export const postAddProduct = asyncHandler(async (req, res) => {
     return res.status(500).json({ error: "Error creating product" });
   }
 });
-
-
 
 export const getDeleteProduct = asyncHandler(async (req, res) => {
   const { seller } = req.user;
@@ -116,9 +114,41 @@ export const editProduct = asyncHandler(async (req, res) => {
       new: true,
     });
 
-       return res.json({ success: "Product edit successfully" });
+    return res.json({ success: "Product edit successfully" });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Error editing product" });
+  }
+});
+
+export const getAllProductOnSale = asyncHandler(async (req, res) => { 
+  try {
+    let Products = await Product.find({ pOffer: { $gt: 0 } }).sort({ _id: -1 });
+    if (Products) {
+      makeResponse({
+        res,
+        status: 200,
+        data: Products,
+        message: "All Products",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+})
+
+export const getSingleProduct = asyncHandler(async (req, res) => {
+  try {
+    let Products = await Product.find({ pPid: req.params.id });
+    if (Products) {
+      makeResponse({
+        res,
+        status: 200,
+        data: Products,
+        message: "All Products",
+      });
+    }
+  } catch (err) {
+    console.log(err);
   }
 });
