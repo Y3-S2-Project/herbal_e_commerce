@@ -22,6 +22,7 @@ const SellerSchema = new Schema(
     sellerReviews: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Review",
+      default: [],
     },
   },
   {
