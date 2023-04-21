@@ -3,7 +3,9 @@ import HerbCard from './HerbCard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import './hbList.scoped.css'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
+import { getAllProductOnSale } from '../../services/productService'
+
 export default function HerbCardList() {
   const containerRef = useRef(null) // Ref for the slider container
   const [scrollPos, setScrollPos] = useState(0) // State for the current scroll position
@@ -14,6 +16,20 @@ export default function HerbCardList() {
     container.scrollLeft = newPosition
     setScrollPos(newPosition)
   }
+
+  const [onSaleProducts, setOnSaleProducts] = useState([])
+  const fetchData = async () => {
+    let responseData = await getAllProductOnSale()
+    setTimeout(() => {
+      if (responseData?.data) {
+        setOnSaleProducts(responseData.data)
+      }
+    }, 1000)
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   const handleScrollRight = () => {
     const container = containerRef.current
@@ -73,16 +89,9 @@ export default function HerbCardList() {
           }}
         >
           <div className="slider-track d-flex justify-content-between  align-items-center d-flex flex-nowrap">
-            <HerbCard />
-            <HerbCard />
-            <HerbCard />
-            <HerbCard />
-            <HerbCard />
-            <HerbCard />
-            <HerbCard />
-            <HerbCard />
-            <HerbCard />
-            <HerbCard />
+            {onSaleProducts?.map((product) => {
+              return <HerbCard key={product.pPid} product={product} />
+            })}
           </div>
         </div>
 

@@ -8,6 +8,7 @@ import FAQ from './faq/FAQ'
 import ServicesPage from './services/ServicesPage'
 import AboutUs from './aboutUs/AboutUs'
 import NotFound from './notFound/NotFound'
+import ProductView from './productView/ProductView'
 export {
   Login,
   Landing,
@@ -19,4 +20,5 @@ export {
   Register,
   NotFound,
   ForgetPassword,
+  ProductView,
 }

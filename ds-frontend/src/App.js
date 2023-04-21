@@ -17,6 +17,7 @@ import {
   FAQ,
   NotFound,
   ServicesPage,
+  ProductView,
 } from './views/common'
 import ShoppingCart from './views/shoppingCart/ShoppingCart'
 import ItemView from './views/itemView/ItemView'
@@ -48,6 +49,7 @@ function App() {
           <Route path="/shoppingcart" name="ShoppingCart" element={<ShoppingCart />} />
           <Route path="/all-products" name="ItemView" element={<ItemView />} />
           <Route path="/orderview" name="OrderView" element={<OrderView />} />
+          <Route path="/productview/:id" name="ProductView" element={<ProductView />} />
           <Route element={<ProtectedRoutes allowedRoles={['ADMIN']} />}>
             <Route path="admin/*" name="Home" element={<AdminLayout />} />
           </Route>

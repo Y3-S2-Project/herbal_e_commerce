@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 //   getProductByCategory,
 //   getProductByPrice,
 //   postAddProduct,
-//   
+//
 
 // getSingleProduct
 import {
@@ -11,6 +11,8 @@ import {
   postAddProduct,
   editProduct,
   getDeleteProduct,
+  getAllProductOnSale,
+  getSingleProduct,
 } from "../controllers/product.controller";
 import { protect, adminProtect, sellerProtect } from "../middleware/auth.js";
 
@@ -21,8 +23,14 @@ productRouter.get("/all-product", getAllProduct);
 // productRouter.get("/product-by-price", getProductByPrice);
 
 productRouter.post("/add-product", protect, sellerProtect, postAddProduct);
-productRouter.post("/edit-product/:id", protect, sellerProtect, editProduct);
-productRouter.delete("/delete-product/:id",protect,sellerProtect, getDeleteProduct);
-// productRouter.get("/single-product", getSingleProduct);
+productRouter.post("/edit-product/:id", protect, sellerProtect,adminProtect, editProduct);
+productRouter.get("/all-product-onsale", getAllProductOnSale);
+productRouter.delete(
+  "/delete-product/:id",
+  protect,
+  sellerProtect,
+  getDeleteProduct
+);
+ productRouter.get("/single-product/:id", getSingleProduct);
 
 export default productRouter;

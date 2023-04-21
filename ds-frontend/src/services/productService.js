@@ -9,6 +9,14 @@ export const getAllProduct = async () => {
   }
 }
 
+export const getAllProductOnSale = async () => {
+  try {
+    let res = await axiosInstance.get(`/product/all-product-onsale`)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
 export const createProduct = async (product) => {
   try {
     const { pName, pDescription, pImages, pStatus, pCategory, pQuantity, pPrice, pOffer, pWeight } =
@@ -30,7 +38,6 @@ export const createProduct = async (product) => {
       pOffer: parsedOffer,
       pWeight: parsedWeight,
     }
-
 
     const response = await axiosInstance.post('/product/add-product', requestBody)
     return response.data
@@ -67,11 +74,19 @@ export const deleteProduct = async (pId) => {
   try {
     let res = await axiosInstance.delete(`/product/delete-product/${pId}`)
     return res.data
-  } catch (error) { 
+  } catch (error) {
     console.log(error)
   }
 }
+export const getProductById = async (pId) => {
+  try {
+    let res = await axiosInstance.get(`/product/single-product/${pId}`)
 
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
 export const productByCategory = async (catId) => {
   try {
     let res = await axiosInstance.post(`/product/product-by-category`, {

@@ -108,9 +108,15 @@ function TopNav() {
                   </button>
                   <ul className="dropdown-menu">
                     <li>
-                      <a className="dropdown-item" href="/user/dashboard">
-                        Profile
-                      </a>
+                      {localStorage.getItem('role') === 'ADMIN' ? (
+                        <a className="dropdown-item" href="/admin/dashboard">
+                          Profile
+                        </a>
+                      ) : (
+                        <a className="dropdown-item" href="/user/dashboard">
+                          Profile
+                        </a>
+                      )}
                     </li>
                     <li>
                       <a className="dropdown-item" href="#">

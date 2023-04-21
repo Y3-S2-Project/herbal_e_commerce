@@ -1,5 +1,5 @@
 import './landing.css'
-
+import { useNavigate } from 'react-router-dom'
 import TopNav from '../../../components/topnav/TopNav'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Container, Row, Col } from 'react-bootstrap'
@@ -14,14 +14,17 @@ import Image3 from '../../../assets/images/landing-slider/image3.jpg'
 import Image4 from '../../../assets/images/landing-slider/image4.jpg'
 import { Footer } from '../../../components'
 import { Link } from 'react-router-dom'
+import { getAllProductOnSale } from '../../../services/productService'
 
 export default function Landing() {
+  const navigate = useNavigate()
   const [images, setImages] = useState([
     { src: Image1, alt: 'Image 1' },
     { src: Image2, alt: 'Image 2' },
     { src: Image3, alt: 'Image 3' },
     { src: Image4, alt: 'Image 4' },
   ])
+
   const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
@@ -30,6 +33,7 @@ export default function Landing() {
     }, 3000)
     return () => clearTimeout(timeout)
   }, [currentIndex, images])
+
   return (
     <>
       <TopNav />
@@ -62,7 +66,7 @@ export default function Landing() {
             <h1 className="fw-bold  fs-5"> Trending Goods</h1>
           </Col>
           <Col className="d-flex justify-content-end align-items-center" xs={6}>
-            <button type="button" className="btn  d-flex align-items-center  p-0">
+            <button type="button" className="btn  d-flex align-items-center  p-0" onClick={() => navigate("/all-products")}>
               <small className="me-2 fw-bold">View All</small>
               <FontAwesomeIcon icon={faAngleRight} />
             </button>
