@@ -22,6 +22,7 @@ import {
 import ShoppingCart from './views/shoppingCart/ShoppingCart'
 import ItemView from './views/itemView/ItemView'
 import OrderView from './views/orders/OrderView'
+import ReviewsView from './views/reviews/sellerView/sellerReviewView'
 
 const loading = (
   <Spinner animation="border" role="status">
@@ -50,6 +51,7 @@ function App() {
           <Route path="/all-products" name="ItemView" element={<ItemView />} />
           <Route path="/orderview" name="OrderView" element={<OrderView />} />
           <Route path="/productview/:id" name="ProductView" element={<ProductView />} />
+          <Route path="/reviews" name="Reviews" element={<ReviewsView />} />
           <Route element={<ProtectedRoutes allowedRoles={['ADMIN']} />}>
             <Route path="admin/*" name="Home" element={<AdminLayout />} />
           </Route>
