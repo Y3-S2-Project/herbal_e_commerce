@@ -2,10 +2,22 @@ import { Container, Row, Col } from 'react-bootstrap'
 import DrugsImage from '../../assets/images/landing-page/drugs-image.png'
 import './herbCard.scoped.css'
 import Button from 'react-bootstrap/Button'
-export default function HerbCard() {
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+export default function HerbCard({ product }) {
+  const navigate = useNavigate()
+  useEffect(() => {
+    console.log(product)
+  }, [])
   return (
     <>
-      <Container className="herb-card tw-border-4 tw-border-[#EDEAE7] tw-rounded-lg tw-shadow-glow">
+      <Container
+        className="herb-card tw-border-4 tw-border-[#EDEAE7] tw-rounded-lg tw-shadow-glow"
+        style={{
+          cursor: 'pointer',
+        }}
+        onClick={() => navigate(`/productview/${product?.pPid}`)}
+      >
         <Row>
           <Col
             style={{
@@ -17,8 +29,8 @@ export default function HerbCard() {
             }}
           >
             <img
-              src={DrugsImage}
-              className="mb-n2 ms-n2 "
+              src={product?.pImages[0]}
+              className="mb-n2 ms-n2"
               style={{
                 marginTop: '-1px',
                 alignSelf: 'flex-right',
@@ -26,8 +38,10 @@ export default function HerbCard() {
                 height: '100px',
                 zIndex: '3',
                 transform: 'translateY(-50%)',
+                borderRadius: '50%',
+                overflow: 'hidden',
               }}
-              alt="Drugs"
+              alt={product?.pImages[0]}
             />
           </Col>
           <Col className="tw-flex tw-justify-end tw-mt-3">
@@ -39,13 +53,15 @@ export default function HerbCard() {
           </Col>{' '}
         </Row>
         <Row>
-          <Col></Col>
+          <Col className=""></Col>
           <Col className="tw-flex tw-justify-end">
-            <span class="badge bg-danger  text-white  ">On Sale</span>
+            {product?.pSaleStatus && (
+              <span className="badge bg-danger  text-white  "> {product?.pOffer}% Off</span>
+            )}
           </Col>{' '}
         </Row>
         <Row>
-          <Col>Blackberry bluestem</Col>
+          <Col>{product?.pName}</Col>
         </Row>
         <Row className="mt-1">
           <Col className="mt-3">
@@ -56,7 +72,9 @@ export default function HerbCard() {
               <small className="tw-flex tw-justify-end">6.00</small>
             </Row>
             <Row>
-              <small className="tw-flex tw-justify-end text-danger tw-font-bold">$ 6.00</small>
+              <small className="tw-flex tw-justify-end text-danger tw-font-bold">
+                $ {product?.pPrice}
+              </small>
             </Row>
             <Row>
               <small className="tw-flex tw-justify-end">6.00</small>

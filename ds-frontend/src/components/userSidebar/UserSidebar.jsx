@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import './userSidebar.scoped.css'
 import { useRef } from 'react'
+import { Container } from 'react-bootstrap'
 
 export default function SideBar(props) {
   const ref = useRef(null)

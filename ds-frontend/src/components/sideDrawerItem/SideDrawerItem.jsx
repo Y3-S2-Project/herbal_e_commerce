@@ -6,12 +6,11 @@ import './sideDrawerItem.css'
 
 export default function SideDrawerItem() {
   return (
-    
     <div className="item-filter">
       <h4 className="tw-font-bold">Filter</h4>
-      <br/>
+      <br />
       <h4>Brand</h4>
-      <br/>
+      <br />
       <Form inline>
         <div className="position-relative">
           <Form.Control type="text" placeholder="Name of brand" />
@@ -20,7 +19,7 @@ export default function SideDrawerItem() {
             className="position-absolute top-50 end-0 translate-middle-y pe-2"
           />
         </div>
-        <br/>
+        <br />
         <Form.Group className="mb-3">
           <Form.Check type="checkbox" label="Artisana" id="artisana" />
         </Form.Group>
@@ -29,7 +28,7 @@ export default function SideDrawerItem() {
         </Form.Group>
       </Form>
       <h4>Form</h4>
-      <br/>
+      <br />
       <Form.Group className="mb-3">
         <Form.Check type="checkbox" label="Prepackaged" id="prepackaged" />
       </Form.Group>
@@ -39,4 +38,3 @@ export default function SideDrawerItem() {
     </div>
   )
 }
-
