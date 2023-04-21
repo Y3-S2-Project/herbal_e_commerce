@@ -1,4 +1,4 @@
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Container, Row, Button } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getProductById } from '../../../services/productService'
@@ -37,6 +37,7 @@ const ProductView = () => {
 
   const [product, setProduct] = useState({})
   const [loading, setLoading] = useState(true)
+  const [weight, setWeight] = useState(0)
 
   useEffect(() => {
     fetchData()
@@ -104,14 +105,14 @@ const ProductView = () => {
                 play
                 // customContent={<p style={contentStyle}>{"I am the content/text"}</p>}
                 cancelOnInteraction={false} // should stop playing on user interaction
-                interval={6000}
+                interval={500}
                 style={{
                   backgroundColor: 'white',
                 }}
               >
                 {product?.pImages.map((image, index) => (
                   <div key={index}>
-                    <img src={image} alt="" style={bgImg} />
+                    <img src={image} alt={image} style={bgImg} />
                   </div>
                 ))}
               </AwesomeSlider>
@@ -143,13 +144,7 @@ const ProductView = () => {
                 <Col>{product?.pQuantity} </Col>
               </Row>
               <Row>
-                <div
-                  className="item-add-component"
-                  style={{ backgroundColor: 'red !important', borderRadius: '10px' }}
-                >
-                  {' '}
-                  <AddItem product={product} />
-                </div>
+                <AddItem product={product} weight={weight} setWeight={setWeight} />
               </Row>
             </Col>
           </Row>
@@ -182,11 +177,81 @@ const ProductView = () => {
   )
 }
 
-const AddItem = () => {
+const AddItem = ({ product, weight, setWeight }) => {
+  const [hovered, setHovered] = useState(false)
+  const [totalPrice, setTotalPrice] = useState(0)
+
+  const handleMouseEnter = () => {
+    setHovered(true)
+  }
+
+  const handleMouseLeave = () => {
+    setHovered(false)
+  }
+
+  const handleWeightChange = (newWeight) => {
+    setWeight(newWeight)
+    const pricePerKg = product.pPrice / product.pWeight
+    setTotalPrice(pricePerKg * newWeight)
+  }
+
   return (
-    <Col>
-      <p></p>
-    </Col>
+    <div className="tw-bg-[#f2f2f2] tw-p-4 tw-rounded-2xl tw-flex tw-justify-between tw-items-center tw-ml-5 tw-w-full tw-mt-4">
+      <Col className="tw-col-4">
+        <Row>
+          <h2>Total $ {totalPrice}</h2>
+        </Row>
+        <Row>
+          <p>
+            {' '}
+            ${product.pPrice} / {product.pWeight} kg
+          </p>
+        </Row>
+      </Col>
+      <Col className="tw-col-4">
+        <WeightCounter weight={weight} setWeight={handleWeightChange} />
+      </Col>
+      <Col className="tw-col-4">
+        <Button
+          variant="outline-dark"
+          style={{
+            backgroundColor: hovered ? 'white' : 'green',
+            color: hovered ? 'green' : 'white',
+            height: '100%',
+            marginLeft: '20%',
+          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          Add to Cart +
+        </Button>
+      </Col>
+    </div>
   )
 }
+
+const WeightCounter = ({ weight, setWeight }) => {
+  const decrementWeight = () => {
+    if (weight > 0) {
+      setWeight(weight - 1)
+    }
+  }
+
+  const incrementWeight = () => {
+    setWeight(weight + 1)
+  }
+
+  return (
+    <div className="weight-counter">
+      <button className="weight-counter-button" onClick={decrementWeight}>
+        -
+      </button>
+      <span className="weight-counter-count">{weight} kg</span>
+      <button className="weight-counter-button" onClick={incrementWeight}>
+        +
+      </button>
+    </div>
+  )
+}
+
 export default ProductView

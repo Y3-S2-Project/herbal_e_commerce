@@ -121,7 +121,7 @@ export const editProduct = asyncHandler(async (req, res) => {
   }
 });
 
-export const getAllProductOnSale = asyncHandler(async (req, res) => { 
+export const getAllProductOnSale = asyncHandler(async (req, res) => {
   try {
     let Products = await Product.find({ pOffer: { $gt: 0 } }).sort({ _id: -1 });
     if (Products) {
@@ -135,7 +135,7 @@ export const getAllProductOnSale = asyncHandler(async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-})
+});
 
 export const getSingleProduct = asyncHandler(async (req, res) => {
   try {

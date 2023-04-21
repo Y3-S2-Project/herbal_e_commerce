@@ -1,25 +1,17 @@
-
-import { NavLink } from "react-router-dom";
-import "./sidebar.scoped.css";
-import {  useRef } from 'react'
-import RImage from './R.png'
-import RImageTittle from './Redivivus.png'
-
-
+import { NavLink } from 'react-router-dom'
+import './sidebar.scoped.css'
+import { useRef } from 'react'
 
 export default function SideBar(props) {
   const ref = useRef(null)
   return (
-
     <nav id="sidebar" ref={ref} className={(props.isActive ? 'active ' : '') + 'sidebar'}>
-
-
       <ul className="list-unstyled components font-color">
         <li className="text-center font-weight-bold">
           {!props.isActive ? (
-            <img id='rimage-title' alt="bit-logo" ></img>
+            <img id="rimage-title" alt="bit-logo"></img>
           ) : (
-            <img alt="mini-logo" ></img>
+            <img alt="mini-logo"></img>
           )}
         </li>
         <li>
@@ -41,12 +33,12 @@ export default function SideBar(props) {
             aria-expanded="false"
           >
             <i className="fa fa-users" aria-hidden="true"></i>
-            {!props.isActive ? <small> Customers</small> : <small> </small>}
+            {!props.isActive ? <small> Product Management</small> : <small> </small>}
           </a>
           <ul className="collapse list-unstyled font-color" id="customer">
             <li>
               <NavLink
-                to="./new-customer"
+                to="./product-management/products"
                 className={({ isActive }) =>
                   isActive ? 'font-color side-link selected' : 'font-color side-link '
                 }
@@ -75,9 +67,8 @@ export default function SideBar(props) {
             data-toggle="collapse"
             aria-expanded="false"
           >
-
             <i className="fas fa-glasses"></i>
-            Company
+            {!props.isActive ? <small> Category Management</small> : <small> </small>}
           </a>
           <ul className="collapse list-unstyled font-color" id="company">
             <li>

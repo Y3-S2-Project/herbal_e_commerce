@@ -13,6 +13,9 @@ export default function HerbCard({ product }) {
     <>
       <Container
         className="herb-card tw-border-4 tw-border-[#EDEAE7] tw-rounded-lg tw-shadow-glow"
+        style={{
+          cursor: 'pointer',
+        }}
         onClick={() => navigate(`/productview/${product?.pPid}`)}
       >
         <Row>
