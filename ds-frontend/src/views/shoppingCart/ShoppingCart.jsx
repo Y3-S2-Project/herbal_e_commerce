@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import CartItem from '../../components/cartItem/CartItem'
 import { TopNav } from '../../components'
 import { Col, Container, Row } from 'react-bootstrap'
-import './shoppingCart.css';
+import './shoppingCart.css'
 import axios from 'axios'
 
 export default function ShoppingCart() {
-  const [totalPrice, setTotalPrice] = React.useState(0);
-  const [noOfItems, setNoOfItems] = React.useState(0);
+  const [totalPrice, setTotalPrice] = React.useState(0)
+  const [noOfItems, setNoOfItems] = React.useState(0)
   const [cart, setCart] = React.useState([])
   const [userId, setUserId] = React.useState('')
   const [cartId, setCartId] = React.useState('')
@@ -17,19 +17,20 @@ export default function ShoppingCart() {
   }
 
   //get total price of cart
-  axios.get('http://localhost:3001/api/cart/getTotalPrice/642d7b2fadc38c896ac0a75e',config).then((response)=>{
-    console.log(response.data);
-    setTotalPrice(response.data.totalPrice);
-  })
-  .catch((error)=>{
-    console.log(error)
-  });
+  axios
+    .get('http://localhost:3001/api/cart/getTotalPrice/642d7b2fadc38c896ac0a75e', config)
+    .then((response) => {
+      // console.log(response.data);
+      setTotalPrice(response.data.totalPrice)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 
   //get no of items in the cart
   axios
     .get('http://localhost:3001/api/cart/getCartCount/642d7b2fadc38c896ac0a75e', config)
     .then((response) => {
-      console.log(response.data)
       setNoOfItems(response.data.count)
     })
     .catch((error) => {
@@ -42,7 +43,7 @@ export default function ShoppingCart() {
       .delete('http://localhost:3001/api/cart/642d7b2fadc38c896ac0a75e', config)
       .then((response) => {
         console.log('Deleted')
-        setCart([]);
+        setCart([])
       })
       .catch((error) => {
         console.log(error)
@@ -50,8 +51,8 @@ export default function ShoppingCart() {
   }
 
   //remove one product from cart
-  const handleRemoveProduct = (productId,e) => {
-    e.preventDefault();
+  const handleRemoveProduct = (productId, e) => {
+    e.preventDefault()
     axios
       .delete('http://localhost:3001/api/cart/642d7b2fadc38c896ac0a75e/' + productId, config)
       .then((response) => {
@@ -63,11 +64,11 @@ export default function ShoppingCart() {
   }
 
   //get the cart
-  useEffect(()=>{
+  useEffect(() => {
     axios
       .get('http://localhost:3001/api/cart/642d7b2fadc38c896ac0a75e', config)
       .then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         setUserId(response.data.userId)
         setCartId(response.data.cartId)
         setCart(response.data.products)
@@ -75,7 +76,7 @@ export default function ShoppingCart() {
       .catch((error) => {
         console.log(error)
       })
-  },[cart])
+  }, [cart])
 
   return (
     <>

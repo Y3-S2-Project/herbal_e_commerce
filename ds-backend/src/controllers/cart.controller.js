@@ -33,7 +33,6 @@ const createCart = asyncHandler(async (req, res) => {
 const getCartByUserId = asyncHandler(async (req, res) => {
   try {
     const cart = await Cart.findOne({ userId: req.params.userId })
-      .populate("userId", "name")
       .populate("products.product");
 
     if (cart) {
