@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import TopNav from '../../../components/topnav/TopNav'
 import { validateEmail, validateFullName, validateMessage } from '../../../utils/validations'
-import { IpAddress, SendEmail } from '../../../services/sendMail'
+import { IpAddress, SendEmail } from '../../../services/SendMail'
 import { toast } from "react-toastify";
 import { Form, Button } from 'react-bootstrap'
 

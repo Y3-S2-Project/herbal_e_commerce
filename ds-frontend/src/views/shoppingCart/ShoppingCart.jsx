@@ -11,7 +11,6 @@ export default function ShoppingCart() {
   const [cart, setCart] = React.useState([])
   const [userId, setUserId] = React.useState('')
   const [cartId, setCartId] = React.useState('')
-  const [cartRemoved, setCartRemoved] = React.useState(false)
 
   const config = {
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
