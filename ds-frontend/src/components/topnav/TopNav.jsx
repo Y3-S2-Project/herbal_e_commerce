@@ -13,7 +13,28 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Form from 'react-bootstrap/Form'
 import { Link, NavLink } from 'react-router-dom'
 import './topnav.scoped.css'
+import axios from 'axios'
+import { useState } from 'react'
+import React from 'react'
+
 function TopNav() {
+  const[noOfItems, setNoOfItems] = React.useState(0);
+
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+  }
+
+  //get no of items in the cart
+  axios
+    .get('http://localhost:3001/api/cart/getCartCount/642d7b2fadc38c896ac0a75e', config)
+    .then((response) => {
+      console.log(response.data)
+      setNoOfItems(response.data.count)
+    })
+    .catch((error) => {
+      console.log(error)
+    });
+
   return (
     <Navbar collapseOnSelect expand="lg">
       <Container>
@@ -142,7 +163,7 @@ function TopNav() {
             <Link to="/shoppingcart">
               <div className="cart">
                 <FontAwesomeIcon icon={faShoppingCart} />
-                <span>0</span>
+                <span>{noOfItems}</span>
               </div>
             </Link>
             <div className="ms-2">
