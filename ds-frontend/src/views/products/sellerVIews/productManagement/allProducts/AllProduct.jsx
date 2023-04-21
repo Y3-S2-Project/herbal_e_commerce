@@ -74,7 +74,7 @@ const AllProduct = (props) => {
 
   return (
     <Fragment>
-      <div className="tw-col-span-1 tw-overflow-auto tw-bg-white tw-shadow-lg tw-p-4">
+      <div className="tw-col-span-1  tw-overflow-auto tw-bg-white tw-shadow-lg tw-p-4 tw-h-full">
         <table className="tw-table-auto tw-border tw-w-full tw-my-2">
           <thead>
             <tr>

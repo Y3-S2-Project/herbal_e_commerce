@@ -43,7 +43,7 @@ export default function Landing() {
               className="rounded-5"
               style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)', height: '400px' }}
             />
-            <Link to={`/itemview`}>
+            <Link to={`/all-products`}>
               <button className="position-absolute bottom-0 start-0 ms-5 mb-5 btn btn-primary btn-banner">
                 Shop Now
               </button>

@@ -1,9 +1,9 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react'
-import { getAllProduct, editProduct } from '../../../../../services/productService'
+
 import moment from 'moment'
 import { ProductContext } from '../Products'
 import TableFooter from './TableFooter'
-const apiURL = process.env.REACT_APP_API_URL
+
 const ProductTable = ({ product, deleteProduct, editProduct }) => {
   return (
     <>
@@ -17,7 +17,7 @@ const ProductTable = ({ product, deleteProduct, editProduct }) => {
         <td className="tw-p-2 tw-text-center">
           <img
             className="tw-w-12 tw-h-12 tw-object-cover tw-object-center"
-            src={`${apiURL}/uploads/products/${product?.pImages[0]}`}
+            src={`${product?.pImages[0]}`}
             alt="pic"
           />
         </td>

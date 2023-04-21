@@ -50,6 +50,12 @@ const productSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  //object ids of reviews for this product
+  pReviews: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "Review",
+    default: [],
+  },
 });
 
 const Product = mongoose.model("Product", productSchema);

@@ -1,9 +1,6 @@
 import React, { Suspense } from 'react'
 
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-
-
 
 import Spinner from 'react-bootstrap/Spinner'
 
@@ -31,7 +28,6 @@ const loading = (
   </Spinner>
 )
 
-
 const AdminLayout = React.lazy(() => import('./layout/AdminLayout'))
 const UserLayout = React.lazy(() => import('./layout/UserLayout'))
 
@@ -50,8 +46,8 @@ function App() {
           <Route path="/services" name="ServicePage" element={<ServicesPage />} />
           <Route path="/registration" name="Register" element={<Register />} />
           <Route path="/shoppingcart" name="ShoppingCart" element={<ShoppingCart />} />
-          <Route path='/itemview' name="ItemView" element={<ItemView/>}/>
-          <Route path='/orderview' name="OrderView" element={<OrderView/>}/>
+          <Route path="/all-products" name="ItemView" element={<ItemView />} />
+          <Route path="/orderview" name="OrderView" element={<OrderView />} />
           <Route element={<ProtectedRoutes allowedRoles={['ADMIN']} />}>
             <Route path="admin/*" name="Home" element={<AdminLayout />} />
           </Route>
