@@ -40,11 +40,6 @@ const handleChange = (action, product, quantity) => {
     })
 }
 
-
-
-
-
-
   return (
     <>
       {cart && cart?.map((ct) => (
