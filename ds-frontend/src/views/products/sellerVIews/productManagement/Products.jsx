@@ -9,7 +9,7 @@ export const ProductContext = createContext()
 
 const ProductComponent = () => {
   return (
-    <div className="tw-grid tw-grid-cols-1 tw-space-y-4 p-4">
+    <div className="tw-grid tw-grid-cols-1 tw-space-y-4 tw-p-4">
       <ProductMenu />
       <AllProduct />
     </div>
