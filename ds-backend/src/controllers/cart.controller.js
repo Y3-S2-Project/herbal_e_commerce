@@ -1,4 +1,4 @@
-const asyncHandler = require("express-async-handler");
+import asyncHandler from "../middleware/async.js";
 import Cart from "../models/cart.model.js";
 
 //Create new shopping cart
@@ -28,12 +28,12 @@ const createCart = asyncHandler(async (req, res) => {
   }
 });
 
-
 //Get shopping cart by user id
 const getCartByUserId = asyncHandler(async (req, res) => {
   try {
-    const cart = await Cart.findOne({ userId: req.params.userId })
-      .populate("products.product");
+    const cart = await Cart.findOne({ userId: req.params.userId }).populate(
+      "products.product"
+    );
 
     if (cart) {
       res.status(200).json(cart);
@@ -112,10 +112,9 @@ const getTotalPrice = asyncHandler(async (req, res) => {
     if (cart) {
       let totalPrice = 0;
       cart.products.forEach((item) => {
-        if (item.product.pPrice) { 
+        if (item.product.pPrice) {
           totalPrice += item.product.pPrice * item.quantity;
         }
-        
       });
       console.log(totalPrice);
       res.status(200).json({ totalPrice });
@@ -146,11 +145,11 @@ const getCartCount = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
-    createCart, 
-    getCartByUserId,
-    updateCart,
-    deleteCart,
-    deleteProductFromCart,
-    getTotalPrice,
-    getCartCount
-}
+  createCart,
+  getCartByUserId,
+  updateCart,
+  deleteCart,
+  deleteProductFromCart,
+  getTotalPrice,
+  getCartCount,
+};

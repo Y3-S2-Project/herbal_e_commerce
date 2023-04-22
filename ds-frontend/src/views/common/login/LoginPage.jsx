@@ -22,13 +22,14 @@ export default function Login() {
       .then((res) => {
         if (res.status === 200) {
           //set localstorage
+        
           localStorage.setItem('role', res.data.data.user.role)
           localStorage.setItem('token', res.data.data.access_token)
           localStorage.setItem('name', res.data.data.user.name.first_name)
           localStorage.setItem('email', res.data.data.user.email)
           localStorage.setItem('authenticated', true)
           localStorage.setItem('id', res.data.data.user._id)
-
+ 
           setEmail('')
           setPassword('')
           
