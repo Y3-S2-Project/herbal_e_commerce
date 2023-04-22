@@ -1,5 +1,5 @@
 const express = require('express');
-import { protect } from "../middleware/auth.js";
+import { buyerProtect, protect } from "../middleware/auth.js";
 const {
   createCart,
   getCartByUserId,
@@ -19,7 +19,9 @@ cartRouter
   .delete(protect, deleteCart);
 cartRouter.route('/:userId/:productId').delete(protect, deleteProductFromCart);
 // cartRouter.route('/:userId/:productId/').put(protect, updateProductQuantity);
-cartRouter.route('/getTotalPrice/:userId').get(protect, getTotalPrice);
-cartRouter.route('/getCartCount/:userId').get(protect, getCartCount);
+cartRouter.route('/getTotalPrice/:userId').get(protect,buyerProtect, getTotalPrice);
+cartRouter
+  .route("/getCartCount/:userId")
+  .get(protect, buyerProtect, getCartCount);
 
 export default cartRouter;

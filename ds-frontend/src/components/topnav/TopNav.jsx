@@ -14,9 +14,12 @@ import Form from 'react-bootstrap/Form'
 import { Link, NavLink } from 'react-router-dom'
 import './topnav.scoped.css'
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import React from 'react'
+import socketIOClient from 'socket.io-client'
+import { Menu, Dropdown, message, Badge } from 'antd'
 
+export const socket = socketIOClient(process.env.REACT_APP_BACKEND_URL)
 function TopNav() {
   const [noOfItems, setNoOfItems] = React.useState(0)
 
@@ -25,15 +28,71 @@ function TopNav() {
   }
 
   //get no of items in the cart
-  axios
-    .get('http://localhost:3001/api/cart/getCartCount/642d7b2fadc38c896ac0a75e', config)
-    .then((response) => {
-      setNoOfItems(response.data.count)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
 
+  //notification
+  const fetchCartCount = () => {
+    if (localStorage.getItem('role') === 'BUYER') {
+      axios
+        .get('http://localhost:3001/api/cart/getCartCount/642d7b2fadc38c896ac0a75e', config)
+        .then((response) => {
+          setNoOfItems(response.data.count)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }
+  useEffect(() => {
+    fetchCartCount()
+  }, [])
+  const [feeds, setFeeds] = useState([])
+  const [isNewFeed, setIsNewFeed] = useState(false)
+  useEffect(() => {
+    socket.emit('initial_data')
+    socket.on('get_data', getData)
+    socket.on('change_data', changeData)
+    return () => {
+      socket.off('get_data')
+      socket.off('change_data')
+    }
+  }, [])
+
+  const getData = (feeds) => {
+    if (feeds.length && feeds.some((feed) => feed.read === false)) {
+      setIsNewFeed(true)
+    } else {
+      setIsNewFeed(false)
+    }
+    setFeeds(feeds)
+  }
+
+  const changeData = () => socket.emit('initial_data')
+
+  const handleClick = ({ key }) => {
+    message.info(`Clicked on item ${key}`)
+  }
+
+  const handleDropdownClick = () => {
+    socket.emit('check_all_notifications')
+  }
+
+  const menu = (
+    <Menu onClick={handleClick}>
+      {feeds.length ? (
+        feeds.map((feed) => {
+          return (
+            <Menu.Item key={feed._id}>
+              <p>{feed.title}</p>
+            </Menu.Item>
+          )
+        })
+      ) : (
+        <Menu.Item key="nothing">
+          <p>No feeds to show!</p>
+        </Menu.Item>
+      )}
+    </Menu>
+  )
   return (
     <Navbar collapseOnSelect expand="lg">
       <Container>
@@ -114,8 +173,23 @@ function TopNav() {
           )}
           {localStorage.getItem('token') && (
             <div className="ms-auto me-3">
-              <div className="  ">
-                <FontAwesomeIcon icon={faBell} />
+              <div className="d-flex align-items-center">
+                {/* <FontAwesomeIcon icon={faBell} /> */}
+                <div>
+                  <Dropdown overlay={menu} trigger={['click']} onClick={handleDropdownClick}>
+                    {isNewFeed ? (
+                      <Badge dot>
+                        <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+                          <FontAwesomeIcon icon={faBell} style={{ color: 'blue' }} />
+                        </a>
+                      </Badge>
+                    ) : (
+                      <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+                        <FontAwesomeIcon icon={faBell} style={{ color: 'blue' }} />
+                      </a>
+                    )}
+                  </Dropdown>
+                </div>
                 <div className="btn-group ms-5">
                   <button
                     type="button"

@@ -46,7 +46,7 @@ const ProductTable = ({ product, confirmProduct, viewProduct }) => {
             <FontAwesomeIcon icon={faEye} color="blue" />
           </span>
           <span
-            onClick={(e) => confirmProduct(product?.pPid)}
+            onClick={(e) => confirmProduct(product?.pPid, product?.pSeller)}
             className="tw-cursor-pointer tw-hover:bg-gray-200 tw-rounded-lg tw-p-2 tw-mx-1"
           >
             <FontAwesomeIcon icon={faCheckCircle} color="green" />
