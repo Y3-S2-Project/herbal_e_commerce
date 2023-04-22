@@ -35,9 +35,13 @@ io.on("connection", (socket) => {
     io.sockets.emit("get_data", feed);
   });
 
-  socket.on("post_data", async (body) => {
-    const { userID, message } = body;
-    const feed = new Feed({ message: message, read: false, userID: userID });
+  socket.on("post_data", async (dataString) => {
+    const data = JSON.parse(dataString);
+    const feed = new Feed({
+      read: false,
+      userID: data.userID,
+      message: data.message,
+    });
     await feed.save();
     io.sockets.emit("change_data");
   });

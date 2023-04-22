@@ -45,6 +45,7 @@ function TopNav() {
   useEffect(() => {
     fetchCartCount()
   }, [])
+
   const [feeds, setFeeds] = useState([])
   const [isNewFeed, setIsNewFeed] = useState(false)
   useEffect(() => {
@@ -63,7 +64,7 @@ function TopNav() {
     } else {
       setIsNewFeed(false)
     }
-    setFeeds(feeds)
+    setFeeds(feeds.filter((feed) => feed.userID === localStorage.getItem('id')))
   }
 
   const changeData = () => socket.emit('initial_data')
@@ -82,7 +83,7 @@ function TopNav() {
         feeds.map((feed) => {
           return (
             <Menu.Item key={feed._id}>
-              <p>{feed.title}</p>
+              <p>{feed.message}</p>
             </Menu.Item>
           )
         })
