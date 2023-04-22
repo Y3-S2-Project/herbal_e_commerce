@@ -13,6 +13,7 @@ import {
   getDeleteProduct,
   getAllProductOnSale,
   getSingleProduct,
+  updateVisibleStatus,
 } from "../controllers/product.controller";
 import { protect, adminProtect, sellerProtect } from "../middleware/auth.js";
 
@@ -23,7 +24,13 @@ productRouter.get("/all-product", getAllProduct);
 // productRouter.get("/product-by-price", getProductByPrice);
 
 productRouter.post("/add-product", protect, sellerProtect, postAddProduct);
-productRouter.post("/edit-product/:id", protect, sellerProtect,adminProtect, editProduct);
+productRouter.post(
+  "/edit-product/:id",
+  protect,
+  sellerProtect,
+  adminProtect,
+  editProduct
+);
 productRouter.get("/all-product-onsale", getAllProductOnSale);
 productRouter.delete(
   "/delete-product/:id",
@@ -31,6 +38,11 @@ productRouter.delete(
   sellerProtect,
   getDeleteProduct
 );
- productRouter.get("/single-product/:id", getSingleProduct);
-
+productRouter.get("/single-product/:id", getSingleProduct);
+productRouter.patch(
+  "/confirm-product",
+  protect,
+  adminProtect,
+  updateVisibleStatus
+);
 export default productRouter;

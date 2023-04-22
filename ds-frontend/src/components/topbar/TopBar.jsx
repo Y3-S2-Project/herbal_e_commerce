@@ -6,8 +6,9 @@ import Logo from '../../assets/images/logo.png'
 export default function TopBar(props) {
   return (
     <>
-      <div className="col-md-12 m-0 p-0">
-        <Container>
+      {' '}
+      <Container>
+        <div className="col-md-12 m-0 p-0">
           <nav className="navbar mb-4 font-color">
             <div id="tcontainer" className="container container-topbar">
               <div className="top-logo d-flex justify-content-between">
@@ -59,8 +60,8 @@ export default function TopBar(props) {
               </div>
             </div>
           </nav>
-        </Container>
-      </div>
+        </div>
+      </Container>
     </>
   )
 }

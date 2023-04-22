@@ -22,7 +22,7 @@ const ProductTable = ({ product, deleteProduct, editProduct }) => {
           />
         </td>
         <td className="tw-p-2 tw-text-center">
-          {product?.pStatus === 'Active' ? (
+          {product?.pStatus === 'Available' ? (
             <span className="tw-bg-green-200 tw-rounded-full tw-text-center tw-text-xs tw-px-2 tw-font-semibold">
               {product?.pStatus}
             </span>
@@ -75,7 +75,6 @@ const ProductTable = ({ product, deleteProduct, editProduct }) => {
           </span>
         </td>
       </tr>
-
     </>
   )
 }
