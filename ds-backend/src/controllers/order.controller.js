@@ -1,6 +1,5 @@
-const asyncHandler = require("express-async-handler");
 import Order from "../models/order.model.js";
-
+import asyncHandler from "../middleware/async.js";
 //Create new order
 const createOrder = asyncHandler(async (req, res) => {
   const newOrder = new Order(req.body);
@@ -53,18 +52,18 @@ const getOrderById = asyncHandler(async (req, res) => {
 
 //Update order status
 const updateOrderStatus = asyncHandler(async (req, res) => {
-    try {
-        const order = await Order.findOne({ orderId: req.params.orderId });
-        if (order) {
-        order.orderStatus = req.body.orderStatus;
-        const updatedOrder = await order.save();
-        res.status(200).json(updatedOrder);
-        } else {
-        res.status(404).json({ message: "Order not found" });
-        }
-    } catch (err) {
-        res.status(500).json(err);
+  try {
+    const order = await Order.findOne({ orderId: req.params.orderId });
+    if (order) {
+      order.orderStatus = req.body.orderStatus;
+      const updatedOrder = await order.save();
+      res.status(200).json(updatedOrder);
+    } else {
+      res.status(404).json({ message: "Order not found" });
     }
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 //Delete order
@@ -99,10 +98,10 @@ const getTotalSales = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
-    createOrder,
-    getAllOrders,
-    getOrderById,
-    updateOrderStatus,
-    deleteOrder,
-    getTotalSales,
-}
+  createOrder,
+  getAllOrders,
+  getOrderById,
+  updateOrderStatus,
+  deleteOrder,
+  getTotalSales,
+};

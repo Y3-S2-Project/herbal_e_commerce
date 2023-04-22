@@ -12,7 +12,7 @@ export const getAllProduct = asyncHandler(async (req, res) => {
         res,
         status: 200,
         data: Products,
-        message: "All Products",
+        success: "All Products",
       });
     }
   } catch (err) {
@@ -129,7 +129,7 @@ export const getAllProductOnSale = asyncHandler(async (req, res) => {
         res,
         status: 200,
         data: Products,
-        message: "All Products",
+        success: "All Products",
       });
     }
   } catch (err) {
@@ -145,10 +145,42 @@ export const getSingleProduct = asyncHandler(async (req, res) => {
         res,
         status: 200,
         data: Products,
-        message: "All Products",
+        success: "All Products",
       });
     }
   } catch (err) {
     console.log(err);
   }
 });
+
+
+
+
+//update visible status
+export const updateVisibleStatus = asyncHandler(async (req, res) => { 
+try {
+  // Find the product with the specified pPid
+  let product = await Product.findOne({ pPid: req.body.pPid });
+
+  // If the product exists, update its pVisible field to true
+  if (product) {
+    product.pVisible = true;
+    let updatedProduct = await product.save();
+    makeResponse({
+      res,
+      status: 200,
+      data: updatedProduct,
+      success: "Product updated successfully",
+    });
+  } else {
+    makeResponse({
+      res,
+      status: 404,
+      error: "Product not found",
+    });
+  }
+} catch (error) {
+  console.error(error);
+  res.status(500).json({ error: "Error updating product" });
+}
+})

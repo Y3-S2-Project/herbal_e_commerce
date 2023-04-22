@@ -5,7 +5,14 @@ import { useRef } from 'react'
 export default function SideBar(props) {
   const ref = useRef(null)
   return (
-    <nav id="sidebar" ref={ref} className={(props.isActive ? 'active ' : '') + 'sidebar'}>
+    <nav
+      id="sidebar"
+      ref={ref}
+      className={
+        (props.isActive ? 'active ' : '') +
+        'sidebar tw-mt-4 tw-min-h-full tw-w-64 tw-bg-white tw-border-r     tw-shadow-x'
+      }
+    >
       <ul className="list-unstyled components font-color">
         <li className="text-center font-weight-bold">
           {!props.isActive ? (
