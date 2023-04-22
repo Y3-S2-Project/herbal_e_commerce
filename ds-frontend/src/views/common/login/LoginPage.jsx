@@ -26,6 +26,7 @@ export default function Login() {
           localStorage.setItem('role', res.data.data.user.role)
           localStorage.setItem('token', res.data.data.access_token)
           localStorage.setItem('name', res.data.data.user.name.first_name)
+          localStorage.setItem('email', res.data.data.user.email)
           localStorage.setItem('authenticated', true)
 
           setEmail('')

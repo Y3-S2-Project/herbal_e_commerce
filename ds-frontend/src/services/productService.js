@@ -9,9 +9,18 @@ const swalWithBootstrapButtons = Swal.mixin({
   buttonsStyling: false,
 })
 //type,sellerId
+export const getSellerAllProduct = async () => {
+  try {
+    let res = await axiosInstance.get(`/product/seller/all-product`)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
 export const getAllProduct = async () => {
   try {
     let res = await axiosInstance.get(`/product/all-product`)
+
     return res.data
   } catch (error) {
     console.log(error)
