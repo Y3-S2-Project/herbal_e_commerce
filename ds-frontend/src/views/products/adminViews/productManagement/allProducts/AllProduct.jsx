@@ -44,10 +44,14 @@ const AllProduct = (props) => {
       })
     } else if (confirmProductResponse?.success) {
       console.log(sellerId)
+      
+      
       const data = { userID: sellerId, message: `Product ${pId} is accepted by admin` }
       console.log(JSON.stringify(data))
+      
       socket.emit('post_data', JSON.stringify(data))
       message.success('Feed created successfully')
+      
       console.log(confirmProductResponse.success)
       fetchData()
     }
