@@ -139,6 +139,17 @@ export default function SideBar(props) {
         </li>
         <li>
           <NavLink
+            to="./adminorder"
+            className={({ isActive }) =>
+              isActive ? 'font-color side-link selected' : 'font-color side-link '
+            }
+          >
+            <i className="fas fa-shopping-cart"></i>
+            {!props.isActive ? <small> Order Management</small> : <small> </small>}
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/settings"
             className={({ isActive }) =>
               isActive ? 'font-color side-link selected' : 'font-color side-link '
