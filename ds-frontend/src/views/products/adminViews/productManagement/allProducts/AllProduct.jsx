@@ -1,10 +1,11 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react'
-import { getAllProduct, deleteProduct } from '../../../../../services/productService'
-import moment from 'moment'
+import React, { useContext, useEffect, useState } from 'react'
+import { getAllProduct, confirmProduct } from '../../../../../services/productService'
 import { ProductContext } from '../AdminProductsView'
 import ProductTable from '../productTable/ProductTable'
 import { Container } from 'react-bootstrap'
-
+import Swal from 'sweetalert2'
+import { message } from 'antd'
+import { socket } from '../../../../../components/topbar/TopBar'
 const AllProduct = (props) => {
   const { data, dispatch } = useContext(ProductContext)
   const { products } = data
@@ -31,21 +32,36 @@ const AllProduct = (props) => {
     }, 1000)
   }
 
-  const deleteProductReq = async (pId) => {
-    let deleteC = await deleteProduct(pId)
-    if (deleteC.error) {
-      console.log(deleteC.error)
-    } else if (deleteC.success) {
-      console.log(deleteC.success)
+  const confirmProductReq = async (pId, sellerId) => {
+    let confirmProductResponse = await confirmProduct(pId)
+    console.log(confirmProductResponse)
+    if (confirmProductResponse?.error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        timer: 2000,
+      })
+    } else if (confirmProductResponse?.success) {
+      console.log(sellerId)
+      
+      
+      const data = { userID: sellerId, message: `Product ${pId} is accepted by admin` }
+      console.log(JSON.stringify(data))
+      
+      socket.emit('post_data', JSON.stringify(data))
+      message.success('Feed created successfully')
+      
+      console.log(confirmProductResponse.success)
       fetchData()
     }
   }
 
   /* This method call the editmodal & dispatch product context */
-  const editProduct = (pId, product, type) => {
+  const viewProduct = (pId, product, type) => {
     if (type) {
       dispatch({
-        type: 'editProductModalOpen',
+        type: 'viewProductModalOpen',
         product: { ...product, pId: pId },
       })
     }
@@ -96,8 +112,8 @@ const AllProduct = (props) => {
                 return (
                   <ProductTable
                     product={item}
-                    editProduct={(pId, product, type) => editProduct(pId, product, type)}
-                    deleteProduct={(pId) => deleteProductReq(pId)}
+                    viewProduct={(pId, product, type) => viewProduct(pId, product, type)}
+                    confirmProduct={(pId,sellerId) => confirmProductReq(pId, sellerId)}
                     key={key}
                   />
                 )

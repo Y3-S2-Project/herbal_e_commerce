@@ -6,13 +6,19 @@ import { makeResponse } from "../utils/response";
 
 export const getAllProduct = asyncHandler(async (req, res) => {
   try {
-    let Products = await Product.find().sort({ _id: -1 });
+    let Products = null;
+
+    if (req?.user) {
+      Products = await Product.find({ pSeller: req?.user?.seller._id }).sort({
+        _id: -1,
+      });
+    } else Products = await Product.find().sort({ _id: -1 });
     if (Products) {
       makeResponse({
         res,
         status: 200,
         data: Products,
-        message: "All Products",
+        success: "All Products",
       });
     }
   } catch (err) {
@@ -44,6 +50,7 @@ export const postAddProduct = asyncHandler(async (req, res) => {
     pOffer: req.body.pOffer,
     pWeight: req.body.pWeight,
     pImages: req.body.pImages,
+    pSeller: seller._id,
     // ... other properties of the product
   });
   try {
@@ -123,13 +130,13 @@ export const editProduct = asyncHandler(async (req, res) => {
 
 export const getAllProductOnSale = asyncHandler(async (req, res) => {
   try {
-    let Products = await Product.find({ pOffer: { $gt: 0 } }).sort({ _id: -1 });
+    let Products = await Product.find({ pSaleStatus: true }).sort({ _id: -1 });
     if (Products) {
       makeResponse({
         res,
         status: 200,
         data: Products,
-        message: "All Products",
+        success: "All Products",
       });
     }
   } catch (err) {
@@ -145,10 +152,39 @@ export const getSingleProduct = asyncHandler(async (req, res) => {
         res,
         status: 200,
         data: Products,
-        message: "All Products",
+        success: "All Products",
       });
     }
   } catch (err) {
     console.log(err);
+  }
+});
+
+//update visible status
+export const updateVisibleStatus = asyncHandler(async (req, res) => {
+  try {
+    // Find the product with the specified pPid
+    let product = await Product.findOne({ pPid: req.body.pPid });
+
+    // If the product exists, update its pVisible field to true
+    if (product) {
+      product.pVisible = true;
+      let updatedProduct = await product.save();
+      makeResponse({
+        res,
+        status: 200,
+        data: updatedProduct,
+        success: "Product updated successfully",
+      });
+    } else {
+      makeResponse({
+        res,
+        status: 404,
+        error: "Product not found",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error updating product" });
   }
 });

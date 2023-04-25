@@ -1,8 +1,26 @@
-import axios from 'axios'
+import Swal from 'sweetalert2'
 import { axiosInstance } from './core/axios'
+
+const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-success',
+    cancelButton: 'btn btn-danger',
+  },
+  buttonsStyling: false,
+})
+//type,sellerId
+export const getSellerAllProduct = async () => {
+  try {
+    let res = await axiosInstance.get(`/product/seller/all-product`)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
 export const getAllProduct = async () => {
   try {
     let res = await axiosInstance.get(`/product/all-product`)
+
     return res.data
   } catch (error) {
     console.log(error)
@@ -104,6 +122,40 @@ export const productByPrice = async (price) => {
       price,
     })
     return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
+//admin confirm the product
+export const confirmProduct = async (pPid) => {
+  /* Most important part for updating multiple image  */
+
+  try {
+    const result = await swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, update it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true,
+    })
+
+    if (result.isConfirmed) {
+      let res = await axiosInstance.patch(`/product/confirm-product`, {
+        pPid,
+      })
+      return res.data
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire(
+        'Cancelled',
+        'Product visibility status is not updated :)',
+        'warning',
+      )
+    }
   } catch (error) {
     console.log(error)
   }

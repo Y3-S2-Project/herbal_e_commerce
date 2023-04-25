@@ -1,9 +1,8 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react'
-import { getAllProduct, deleteProduct } from '../../../../../services/productService'
+import { getSellerAllProduct, deleteProduct } from '../../../../../services/productService'
 import moment from 'moment'
 import { ProductContext } from '../Products'
 import ProductTable from '../productTable/ProductTable'
-const apiURL = process.env.REACT_APP_API_URL
 
 const AllProduct = (props) => {
   const { data, dispatch } = useContext(ProductContext)
@@ -18,7 +17,7 @@ const AllProduct = (props) => {
 
   const fetchData = async () => {
     setLoading(true)
-    let responseData = await getAllProduct()
+    let responseData = await getSellerAllProduct()
     setTimeout(() => {
       if (responseData?.data) {
         dispatch({
