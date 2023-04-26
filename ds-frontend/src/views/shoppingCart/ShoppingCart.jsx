@@ -16,9 +16,11 @@ export default function ShoppingCart() {
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
   }
 
+  
+
   //get total price of cart
   axios
-    .get('http://localhost:3001/api/cart/getTotalPrice/642d7b2fadc38c896ac0a75e', config)
+    .get(`http://localhost:3001/api/cart/getTotalPrice/${localStorage.getItem('id')}`, config)
     .then((response) => {
       // console.log(response.data);
       setTotalPrice(response.data.totalPrice)
@@ -29,7 +31,7 @@ export default function ShoppingCart() {
 
   //get no of items in the cart
   axios
-    .get('http://localhost:3001/api/cart/getCartCount/642d7b2fadc38c896ac0a75e', config)
+    .get(`http://localhost:3001/api/cart/getCartCount/${localStorage.getItem('id')}`, config)
     .then((response) => {
       setNoOfItems(response.data.count)
     })
@@ -40,7 +42,7 @@ export default function ShoppingCart() {
   //remove all items from cart
   const handleRemove = () => {
     axios
-      .delete('http://localhost:3001/api/cart/642d7b2fadc38c896ac0a75e', config)
+      .delete(`http://localhost:3001/api/cart/${localStorage.getItem('id')}`, config)
       .then((response) => {
         console.log('Deleted')
         setCart([])
@@ -54,7 +56,7 @@ export default function ShoppingCart() {
   const handleRemoveProduct = (productId, e) => {
     e.preventDefault()
     axios
-      .delete('http://localhost:3001/api/cart/642d7b2fadc38c896ac0a75e/' + productId, config)
+      .delete(`http://localhost:3001/api/cart/${localStorage.getItem('id')}/` + productId, config)
       .then((response) => {
         console.log(response.data)
       })
@@ -66,7 +68,7 @@ export default function ShoppingCart() {
   //get the cart
   useEffect(() => {
     axios
-      .get('http://localhost:3001/api/cart/642d7b2fadc38c896ac0a75e', config)
+      .get(`http://localhost:3001/api/cart/${localStorage.getItem('id')}`, config)
       .then((response) => {
         // console.log(response.data)
         setUserId(response.data.userId)
