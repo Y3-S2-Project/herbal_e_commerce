@@ -19,11 +19,12 @@ const createOrder = asyncHandler(async (req, res) => {
 
 //Get all orders
 const getAllOrders = asyncHandler(async (req, res) => {
-  const orderId = req.query.orderId;
+  const orderId = req.query?.orderId || null;
   try {
     let orders;
     if (orderId) {
-      orders = await Order.find({ orderId }).populate("products.product");
+      orders = await Order.find({ orderId })
+        .populate("products.product");
     } else {
       orders = await Order.find().populate("products.product");
     }
