@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getProductById } from '../../../services/productService'
 import { TopNav } from '../../../components'
+import Reviews from '../review/reviews'
 import AwesomeSlider from 'react-awesome-slider'
 import 'react-awesome-slider/dist/styles.css'
 import 'react-awesome-slider/dist/styles.css'
@@ -150,7 +151,8 @@ const ProductView = () => {
           </Row>
           <Row className="tw-mt-16">
             <Col>
-              <h1>Customer Reviews</h1>
+              <h1 className="tw-font-bold tw-text-2xl">Customer Reviews</h1>
+              <Reviews reviewCategory={{product: product._id}} />
             </Col>
             <Col>
               <h2 className="tw-font-bold tw-text-2xl">Description</h2>
