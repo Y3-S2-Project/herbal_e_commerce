@@ -16,21 +16,29 @@ export default function Login() {
   //handleSubmit function
   const handleSubmit = (e) => {
     e.preventDefault()
-    //http://localhost:3001/api/auth/login
     //login user
     axiosInstance
       .post('/auth/login', { email, password })
       .then((res) => {
         if (res.status === 200) {
           //set localstorage
+        
           localStorage.setItem('role', res.data.data.user.role)
           localStorage.setItem('token', res.data.data.access_token)
           localStorage.setItem('name', res.data.data.user.name.first_name)
+          localStorage.setItem('email', res.data.data.user.email)
           localStorage.setItem('authenticated', true)
-
+          localStorage.setItem('id', res.data.data.user._id)
+ 
           setEmail('')
           setPassword('')
-
+          
+          if (res.data.data.user.role === 'SELLER') {
+               localStorage.setItem('id', res.data.data.user.seller._id)
+          }
+          if (res.data.data.user.role === 'BUYER') {
+               localStorage.setItem('id', res.data.data.user.buyer._id)
+          }
           //check the user role
           if (res.data.data.user.role === 'ADMIN') {
             navigate('../admin/dashboard')

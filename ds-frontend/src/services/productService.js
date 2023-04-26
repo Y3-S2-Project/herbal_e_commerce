@@ -9,9 +9,18 @@ const swalWithBootstrapButtons = Swal.mixin({
   buttonsStyling: false,
 })
 //type,sellerId
+export const getSellerAllProduct = async () => {
+  try {
+    let res = await axiosInstance.get(`/product/seller/all-product`)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
 export const getAllProduct = async () => {
   try {
     let res = await axiosInstance.get(`/product/all-product`)
+
     return res.data
   } catch (error) {
     console.log(error)
@@ -122,33 +131,31 @@ export const confirmProduct = async (pPid) => {
   /* Most important part for updating multiple image  */
 
   try {
-    swalWithBootstrapButtons
-      .fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, update it!',
-        cancelButtonText: 'No, cancel!',
-        reverseButtons: true,
+    const result = await swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, update it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true,
+    })
+
+    if (result.isConfirmed) {
+      let res = await axiosInstance.patch(`/product/confirm-product`, {
+        pPid,
       })
-      .then(async (result) => {
-        if (result.isConfirmed) {
-          let res = await axiosInstance.patch(`/product/confirm-product`, {
-            pPid,
-          })
-          return res.data
-        } else if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-          swalWithBootstrapButtons.fire(
-            'Cancelled',
-            'Product visibility status is not updated :)',
-            'warning',
-          )
-        }
-      })
+      return res.data
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire(
+        'Cancelled',
+        'Product visibility status is not updated :)',
+        'warning',
+      )
+    }
   } catch (error) {
     console.log(error)
   }

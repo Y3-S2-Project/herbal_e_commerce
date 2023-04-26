@@ -4,6 +4,8 @@ import { ProductContext } from '../AdminProductsView'
 import ProductTable from '../productTable/ProductTable'
 import { Container } from 'react-bootstrap'
 import Swal from 'sweetalert2'
+import { message } from 'antd'
+import { socket } from '../../../../../components/topbar/TopBar'
 const AllProduct = (props) => {
   const { data, dispatch } = useContext(ProductContext)
   const { products } = data
@@ -30,24 +32,26 @@ const AllProduct = (props) => {
     }, 1000)
   }
 
-  const confirmProductReq = async (pId) => {
+  const confirmProductReq = async (pId, sellerId) => {
     let confirmProductResponse = await confirmProduct(pId)
-
-    if (confirmProductResponse?.data.error) {
+    console.log(confirmProductResponse)
+    if (confirmProductResponse?.error) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Something went wrong!',
         timer: 2000,
       })
-    } else if (confirmProductResponse?.data.success) {
-      Swal.fire({
-        icon: 'success',
-        title: 'Request successfully sent!',
-        showConfirmButton: false,
-        timer: 2000,
-      })
-
+    } else if (confirmProductResponse?.success) {
+      console.log(sellerId)
+      
+      
+      const data = { userID: sellerId, message: `Product ${pId} is accepted by admin` }
+      console.log(JSON.stringify(data))
+      
+      socket.emit('post_data', JSON.stringify(data))
+      message.success('Feed created successfully')
+      
       console.log(confirmProductResponse.success)
       fetchData()
     }
@@ -109,7 +113,7 @@ const AllProduct = (props) => {
                   <ProductTable
                     product={item}
                     viewProduct={(pId, product, type) => viewProduct(pId, product, type)}
-                    confirmProduct={(pId) => confirmProductReq(pId)}
+                    confirmProduct={(pId,sellerId) => confirmProductReq(pId, sellerId)}
                     key={key}
                   />
                 )

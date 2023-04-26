@@ -18,7 +18,10 @@ cartRouter
   .put(protect, updateCart)
   .delete(protect, deleteCart);
 cartRouter.route('/:userId/:productId').delete(protect, deleteProductFromCart);
-cartRouter.route('/getTotalPrice/:userId').get(protect, getTotalPrice);
-cartRouter.route('/getCartCount/:userId').get(protect,buyerProtect, getCartCount);
+// cartRouter.route('/:userId/:productId/').put(protect, updateProductQuantity);
+cartRouter.route('/getTotalPrice/:userId').get(protect,buyerProtect, getTotalPrice);
+cartRouter
+  .route("/getCartCount/:userId")
+  .get(protect, buyerProtect, getCartCount);
 
 export default cartRouter;

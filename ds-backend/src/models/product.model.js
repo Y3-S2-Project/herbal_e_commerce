@@ -56,6 +56,10 @@ const productSchema = new mongoose.Schema({
     ref: "Review",
     default: [],
   },
+  pSeller: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Seller",
+  }
 });
 
 const Product = mongoose.model("Product", productSchema);

@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useState, useEffect, useRef } from 'react'
 import { ProductContext } from '../Products'
 
-import { createProduct, getAllProduct } from '../../../../../services/productService'
+import { createProduct, getSellerAllProduct } from '../../../../../services/productService'
 import { getAllCategory } from '../../../../../services/categoryService'
 import { Badge } from 'react-bootstrap'
 import { imageUpload, removeImage } from '../../../../../utils/imagesFunctions'
@@ -53,7 +53,7 @@ const EditProductModal = (props) => {
     setImageAdded(true)
   }, [editformData?.pImages])
   const fetchData = async () => {
-    let responseData = await getAllProduct()
+    let responseData = await getSellerAllProduct()
     if (responseData) {
       dispatch({
         type: 'fetchProductsAndChangeState',

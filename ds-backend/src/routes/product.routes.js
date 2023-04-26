@@ -20,6 +20,8 @@ import { protect, adminProtect, sellerProtect } from "../middleware/auth.js";
 const productRouter = express.Router();
 
 productRouter.get("/all-product", getAllProduct);
+
+productRouter.get("/seller/all-product", protect, sellerProtect, getAllProduct);
 // productRouter.get("/product-by-category", getProductByCategory);
 // productRouter.get("/product-by-price", getProductByPrice);
 

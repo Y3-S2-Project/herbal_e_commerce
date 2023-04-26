@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useState, useEffect, useRef } from 'react'
 import { ProductContext } from '../Products'
-import { createProduct, getAllProduct } from '../../../../../services/productService'
+import { createProduct, getSellerAllProduct } from '../../../../../services/productService'
 import { getAllCategory } from '../../../../../services/categoryService'
 import { Badge } from 'react-bootstrap'
 import { imageUpload, removeImage } from '../../../../../utils/imagesFunctions'
@@ -34,12 +34,12 @@ const AddProductDetail = () => {
   })
 
   const fetchData = async () => {
-    let responseData = await getAllProduct()
+    let responseData = await getSellerAllProduct()
     setTimeout(() => {
-      if (responseData && responseData.Products) {
+      if (responseData && responseData.data) {
         dispatch({
           type: 'fetchProductsAndChangeState',
-          payload: responseData.Products,
+          payload: responseData.data,
         })
       }
     }, 1000)
