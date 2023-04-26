@@ -28,26 +28,42 @@ export default function ReviewCard(reviewDetails) {
     //TODO: Flag as inappropriate
     handleMenuClose()
   }
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString)
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    }
+    return date.toLocaleDateString('en-US', options)
+  }
+
   return (
-    <Card sx={{
-      minWidth: 275,
-      margin: '1rem',
-      borderRadius: '10px', 
-     }}>
+    <Card
+      sx={{
+        minWidth: 275,
+        margin: '1rem',
+        borderRadius: '10px',
+      }}
+    >
       <CardContent>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs={1}>
-              <Avatar alt="Remy Sharp"
-                src='../../../assets/images/landing-page/drugs-image.png'
-              />
+              <Avatar alt="Remy Sharp" src="../../../assets/images/landing-page/drugs-image.png" />
             </Grid>
             <Grid item xs={10}>
               <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                {reviewDetails.reviewDetails.user.name.first_name + " " + reviewDetails.reviewDetails.user.name.last_name}
+                {reviewDetails.reviewDetails.user.name.first_name +
+                  ' ' +
+                  reviewDetails.reviewDetails.user.name.last_name}
               </Typography>
               <Typography sx={{ fontSize: 10 }} color="text.secondary" gutterBottom>
-                {reviewDetails.reviewDetails.updatedAt}
+                {formatDate(reviewDetails.reviewDetails.updatedAt)}
               </Typography>
             </Grid>
             <Grid item xs={1}>
@@ -87,7 +103,7 @@ export default function ReviewCard(reviewDetails) {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Typography variant="body2" color="text.primary" gutterBottom>
-               {reviewDetails.reviewDetails.comment}
+                {reviewDetails.reviewDetails.comment}
               </Typography>
             </Grid>
           </Grid>
