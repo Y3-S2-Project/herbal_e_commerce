@@ -101,7 +101,7 @@ export default function OrderAdminTable() {
               </td>
               <td class="tw-px-6 tw-py-4 tw-whitespace-nowrap">
                 <span
-                  class="tw-px-2 tw-inline-flex tw-text-xs tw-leading-5 tw-font-semibold tw-rounded-full tw-bg-green-100 tw-text-green-800"
+                  class="tw-px-2 tw-inline-flex tw-text-xs tw-leading-5 tw-font-semibold tw-rounded-full tw-bg-green-100 tw-text-white"
                   style={{
                     backgroundColor:
                       order.orderStatus === 'Pending'
