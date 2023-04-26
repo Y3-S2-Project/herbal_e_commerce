@@ -15,7 +15,7 @@ import {
 const userRouter = express.Router();
 
 userRouter.get("/", getAllReviewsController);
-userRouter.get("/read-reviews", getReviewsController);
+userRouter.get("/read-reviews/", getReviewsController);
 userRouter.get("/:review_id", getReviewByIdController);
 
 userRouter.post("/products/create", createProductReviewController);

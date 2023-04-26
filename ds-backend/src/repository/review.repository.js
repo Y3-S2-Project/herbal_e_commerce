@@ -48,8 +48,11 @@ export const getReviewByIdRepository = async (review_id) => {
 };
 
 export const getReviewsRepository = async (reviewData) => {
+  console.log("review data in repo", reviewData);
   try {
-    const reviews = await Review.find(reviewData);
+    const reviews = await Review.find(reviewData)
+    .populate("user", "name")
+    .exec();
     if (!reviews) {
       return {
         status: 404,
