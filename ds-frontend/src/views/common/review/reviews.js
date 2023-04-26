@@ -3,7 +3,7 @@ import ReviewCard from './reviewCard'
 import { getReviews } from '../../../services/reviewService'
 
 export default function Reviews({ reviewCategory }) {
-  console.log("review category: ", reviewCategory)
+  console.log('review category: ', reviewCategory)
   const [reviewList, setReviewList] = useState([])
 
   useEffect(() => {
@@ -16,10 +16,12 @@ export default function Reviews({ reviewCategory }) {
   }, [reviewCategory])
 
   return (
-    <div>
-      {reviewList.data?.map((review) => (
-        <ReviewCard key={review.id} reviewDetails={review} />
-      ))}
-    </div>
+    <>
+      <div>
+        {reviewList.data?.map((review) => (
+          <ReviewCard key={review.id} reviewDetails={review} />
+        ))}
+      </div>
+    </>
   )
 }
