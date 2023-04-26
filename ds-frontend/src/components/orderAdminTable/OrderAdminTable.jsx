@@ -53,6 +53,9 @@ export default function OrderAdminTable() {
               Payment Status
             </th>
             <th class="tw-px-6 tw-py-3 tw-text-left tw-text-xs tw-font-medium tw-text-white tw-uppercase tw-tracking-wider">
+              Order Status
+            </th>
+            <th class="tw-px-6 tw-py-3 tw-text-left tw-text-xs tw-font-medium tw-text-white tw-uppercase tw-tracking-wider">
               Total Price
             </th>
             <th class="tw-px-6 tw-py-3 tw-text-left tw-text-xs tw-font-medium tw-text-white tw-uppercase tw-tracking-wider">
@@ -70,8 +73,10 @@ export default function OrderAdminTable() {
                     alt=""
                     class="tw-w-10 tw-h-10 tw-rounded-full"
                   />
-                  <div class="tw-text-sm tw-font-medium tw-text-gray-900">John Doe</div>
-                  <div class="tw-text-sm tw-text-gray-500">john.doe@gmail.com</div>
+                  <div class="tw-text-sm tw-font-medium tw-text-gray-900">
+                    {order.userId?.name?.first_name}
+                  </div>
+                  <div class="tw-text-sm tw-text-gray-500">{order.userId?.email}</div>
                 </div>
               </td>
               <td class="tw-px-6 py-4 tw-whitespace-nowrap">
@@ -92,6 +97,25 @@ export default function OrderAdminTable() {
               <td class="tw-px-6 tw-py-4 tw-whitespace-nowrap">
                 <span class="tw-px-2 tw-inline-flex tw-text-xs tw-leading-5 tw-font-semibold tw-rounded-full tw-bg-green-100 tw-text-green-800">
                   {order.paymentStatus}
+                </span>
+              </td>
+              <td class="tw-px-6 tw-py-4 tw-whitespace-nowrap">
+                <span
+                  class="tw-px-2 tw-inline-flex tw-text-xs tw-leading-5 tw-font-semibold tw-rounded-full tw-bg-green-100 tw-text-white"
+                  style={{
+                    backgroundColor:
+                      order.orderStatus === 'Pending'
+                        ? '#FFA500'
+                        : order.orderStatus === 'Cancelled'
+                        ? '#DC3545'
+                        : order.orderStatus === 'Dispatch'
+                        ? '#17A2B8'
+                        : order.orderStatus === 'Confirmed'
+                        ? '#28A745'
+                        : '',
+                  }}
+                >
+                  {order.orderStatus}
                 </span>
               </td>
               <td class="tw-px-6 tw-py-4 tw-whitespace-nowrap tw-text-sm tw-text-gray-500">
