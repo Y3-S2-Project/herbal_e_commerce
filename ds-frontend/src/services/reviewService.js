@@ -31,6 +31,7 @@ export const getReviews = async (review) => {
 }
 
 export const createProductReview = async (productReview) => {
+  console.log('product review in service: ', productReview)
   try {
     const response = await axiosInstance.post(`/reviews/products/create`, productReview);
     return response.data;
@@ -41,6 +42,7 @@ export const createProductReview = async (productReview) => {
 };
 
 export const createSellerReview = async (sellerReview) => {
+  console.log('seller review in service: ', sellerReview)
   try {
     const response = await axiosInstance.post(`/reviews/sellers/create`, sellerReview);
     return response.data;
@@ -70,9 +72,10 @@ export const deleteSellerReview = async (reviewId) => {
   }
 };
 
-export const updateProductReview = async (productReview) => {
+export const updateProductReview = async (userId, productReview) => {
+  console.log("This is the updated product review in the service: ", productReview)
   try {
-    const response = await axiosInstance.put(`/reviews/products/update/${productReview.id}`, productReview);
+    const response = await axiosInstance.put(`/reviews/products/update/${userId}`, productReview);
     return response.data;
   } catch (error) {
     console.error(`Error updating product review with ID ${productReview.id}:`, error);
@@ -80,9 +83,10 @@ export const updateProductReview = async (productReview) => {
   }
 };
 
-export const updateSellerReview = async (sellerReview) => {
+export const updateSellerReview = async (userId, sellerReview) => {
+  console.log("This is the updated seller review in the service: ", sellerReview)
   try {
-    const response = await axiosInstance.put(`/reviews/sellers/update/${sellerReview.id}`, sellerReview);
+    const response = await axiosInstance.put(`/reviews/sellers/update/${userId}`, sellerReview);
     return response.data;
   } catch (error) {
     console.error(`Error updating seller review with ID ${sellerReview.id}:`, error);

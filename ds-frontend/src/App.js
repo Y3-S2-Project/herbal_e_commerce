@@ -53,7 +53,6 @@ function App() {
           <Route path="/all-products" name="ItemView" element={<ItemView />} />
           <Route path="/orderview" name="OrderView" element={<OrderView />} />
           <Route path="/productview/:id" name="ProductView" element={<ProductView />} />
-          {/* <Route path="/reviews" name="Reviews" element={<ReviewsView />} /> */}
           <Route path="/checkout" name="Checkout" element={<Checkout />} />
           <Route path="/payment" name="Payment" element={<Payment />} />
           <Route element={<ProtectedRoutes allowedRoles={['ADMIN']} />}>

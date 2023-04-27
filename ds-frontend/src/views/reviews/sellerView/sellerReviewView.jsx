@@ -1,5 +1,5 @@
 import React from 'react'
-import Reviews from '../../common/review/reviews'
+import Reviews from '../../../components/reviewCards/reviews'
 export default function SellerReviewView() {
   return (
     <>
