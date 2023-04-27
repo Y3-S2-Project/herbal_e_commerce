@@ -4,6 +4,7 @@ import { TopNav } from '../../components'
 import { Col, Container, Row } from 'react-bootstrap'
 import './shoppingCart.css'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 export default function ShoppingCart() {
   const [totalPrice, setTotalPrice] = React.useState(0)
@@ -121,12 +122,11 @@ export default function ShoppingCart() {
             <Col></Col>
             <Col></Col>
             <Col className="tw-flex tw-justify-end">
-              <a
-                href="#"
-                className="checkout-btn tw-text-right tw-text-white tw-py-1 tw-px-4 tw-rounded-lg tw-mt-1 "
-              >
-                Checkout
-              </a>
+              <Link to="/checkout">
+                <span className="checkout-btn tw-text-right tw-text-white tw-py-1 tw-px-4 tw-rounded-lg tw-mt-1 ">
+                  Checkout
+                </span>
+              </Link>
             </Col>
           </Row>
         </Container>

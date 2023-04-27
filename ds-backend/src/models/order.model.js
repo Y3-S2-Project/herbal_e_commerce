@@ -29,7 +29,7 @@ const orderSchema = new mongoose.Schema(
     },
     paymentStatus: {
       type: String,
-      default: "Paid",
+      default: "Pending",
     },
     totalPrice: {
       type: Number,
@@ -41,4 +41,3 @@ const orderSchema = new mongoose.Schema(
 const Order = mongoose.model("Order", orderSchema);
 
 export default Order;
-
