@@ -1,5 +1,17 @@
 import Swal from 'sweetalert2'
-import { axiosInstance } from './core/axios'
+
+import axios from 'axios'
+export const axiosInstance = axios.create({
+  baseURL: `http://localhost:3003/api`,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
+
+axiosInstance.interceptors.request.use((config) => {
+  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+  return config
+})
 
 const swalWithBootstrapButtons = Swal.mixin({
   customClass: {
@@ -65,23 +77,40 @@ export const createProduct = async (product) => {
 }
 
 export const editProduct = async (product) => {
-  console.log(product)
-  /* Most important part for updating multiple image  */
-  let formData = new FormData()
-
-  /* Most important part for updating multiple image  */
-  formData.append('pId', product.pId)
-  formData.append('pName', product.pName)
-  formData.append('pDescription', product.pDescription)
-  formData.append('pStatus', product.pStatus)
-  formData.append('pCategory', product.pCategory._id)
-  formData.append('pQuantity', product.pQuantity)
-  formData.append('pPrice', product.pPrice)
-  formData.append('pOffer', product.pOffer)
-  formData.append('pImages', product.pImages)
-
   try {
-    let res = await axiosInstance.post(`/product/edit-product`, formData)
+    const {
+      pId,
+      pPid,
+      pName,
+      pDescription,
+      pImages,
+      pStatus,
+      pCategory,
+      pQuantity,
+      pPrice,
+      pOffer,
+      pWeight,
+    } = product
+
+    const parsedQuantity = parseInt(pQuantity)
+    const parsedPrice = parseFloat(pPrice)
+    const parsedOffer = parseFloat(pOffer)
+    const parsedWeight = parseFloat(pWeight)
+
+    const requestBody = {
+      pId,
+      pPid,
+      pName,
+      pDescription,
+      pStatus,
+      pCategory,
+      pImages,
+      pQuantity: parsedQuantity,
+      pPrice: parsedPrice,
+      pOffer: parsedOffer,
+      pWeight: parsedWeight,
+    }
+    let res = await axiosInstance.post(`/product/seller/edit-product`, requestBody)
     return res.data
   } catch (error) {
     console.log(error)
@@ -142,7 +171,7 @@ export const confirmProduct = async (pPid) => {
     })
 
     if (result.isConfirmed) {
-      let res = await axiosInstance.patch(`/product/confirm-product`, {
+      let res = await axiosInstance.patch(`/product/admin/confirm-product`, {
         pPid,
       })
       return res.data

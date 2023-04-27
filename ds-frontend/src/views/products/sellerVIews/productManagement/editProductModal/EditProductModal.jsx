@@ -14,13 +14,13 @@ const EditProductModal = (props) => {
   const [error, setError] = useState('')
   const fileInputRef = useRef(null)
 
-
   const [imageAdded, setImageAdded] = useState(false)
 
   const alert = (msg, type) => <div className={`bg-${type}-200 py-2 px-4 w-full`}>{msg}</div>
 
   const [editformData, setEditformdata] = useState({
     pId: '',
+    pPid:'',
     pName: '',
     pDescription: '',
     pImages: [],
@@ -37,6 +37,7 @@ const EditProductModal = (props) => {
   useEffect(() => {
     setEditformdata({
       pId: data.editProductModal.pId,
+      pPid: data.editProductModal.pPid,
       pName: data.editProductModal.pName,
       pDescription: data.editProductModal.pDescription,
       pImages: data.editProductModal.pImages,
@@ -49,6 +50,11 @@ const EditProductModal = (props) => {
       pWeight: data.editProductModal.pWeight,
     })
   }, [data.editProductModal])
+
+
+
+
+
   useEffect(() => {
     setImageAdded(true)
   }, [editformData?.pImages])
@@ -171,7 +177,7 @@ const EditProductModal = (props) => {
           data.editProductModal.modal ? '' : 'tw-hidden'
         } tw-fixed tw-inset-0 tw-flex tw-items-center tw-z-30 tw-justify-center tw-overflow-auto`}
       >
-        <div className="tw-mt-32 tw-md:mt-0 tw-relative tw-bg-white tw-w-11/12 tw-md:w-3/6 tw-shadow-lg tw-flex tw-flex-col tw-items-center tw-space-y-4 tw-px-4 tw-py-4 tw-md:px-8">
+        <div className="tw-mt-4 tw-md:mt-0 tw-relative tw-bg-white  tw-w-8/12 tw-md:w-3/6 tw-shadow-lg tw-flex tw-flex-col tw-items-center tw-space-y-4 tw-px-4 tw-py-4 tw-md:px-8">
           <div className="tw-flex tw-items-center tw-justify-between tw-w-full tw-pt-4">
             <span className="tw-text-left tw-font-semibold tw-text-2xl tw-tracking-wider">
               Edit Product
