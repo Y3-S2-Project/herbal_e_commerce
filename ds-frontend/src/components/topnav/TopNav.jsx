@@ -19,7 +19,7 @@ import React from 'react'
 import socketIOClient from 'socket.io-client'
 import { Menu, Dropdown, message, Badge } from 'antd'
 
-export const socket = socketIOClient(process.env.REACT_APP_BACKEND_URL)
+export const socket = socketIOClient('http://localhost:3002')
 function TopNav() {
   const [noOfItems, setNoOfItems] = React.useState(0)
 
@@ -33,7 +33,7 @@ function TopNav() {
   const fetchCartCount = () => {
     if (localStorage.getItem('role') === 'BUYER') {
       axios
-        .get('http://localhost:3001/api/cart/getCartCount/642d7b2fadc38c896ac0a75e', config)
+        .get('http://localhost:3004/api/cart/getCartCount/642d7b2fadc38c896ac0a75e', config)
         .then((response) => {
           setNoOfItems(response.data.count)
         })
@@ -48,6 +48,7 @@ function TopNav() {
 
   const [feeds, setFeeds] = useState([])
   const [isNewFeed, setIsNewFeed] = useState(false)
+
   useEffect(() => {
     socket.emit('initial_data')
     socket.on('get_data', getData)
@@ -57,6 +58,7 @@ function TopNav() {
       socket.off('change_data')
     }
   }, [])
+  
 
   const getData = (feeds) => {
     if (feeds.length && feeds.some((feed) => feed.read === false)) {

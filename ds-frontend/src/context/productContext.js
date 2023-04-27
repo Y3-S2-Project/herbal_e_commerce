@@ -4,6 +4,7 @@ export const productState = {
   editProductModal: {
     modal: false,
     pId: '',
+    pPid: '',
     pName: '',
     pDescription: '',
     pImages: [],
@@ -17,6 +18,7 @@ export const productState = {
   viewProductModal: {
     modal: false,
     pId: '',
+    pPid: '',
     pName: '',
     pDescription: '',
     pImages: [],
@@ -50,6 +52,7 @@ export const productReducer = (state, action) => {
         editProductModal: {
           modal: true,
           pId: action.product.pId,
+          pPid: action.product.pPid,
           pName: action.product.pName,
           pDescription: action.product.pDescription,
           pImages: action.product.pImages,
@@ -67,6 +70,7 @@ export const productReducer = (state, action) => {
         editProductModal: {
           modal: false,
           pId: '',
+          pPid: '',
           pName: '',
           pDescription: '',
           pImages: [],
@@ -79,13 +83,15 @@ export const productReducer = (state, action) => {
         },
       }
       {
-        /* View a product */  }
+        /* View a product */
+      }
     case 'viewProductModalOpen':
       return {
         ...state,
         viewProductModal: {
           modal: true,
           pId: action.product.pId,
+          pPid: action.product.pPid,
           pName: action.product.pName,
           pDescription: action.product.pDescription,
           pImages: action.product.pImages,
@@ -103,6 +109,7 @@ export const productReducer = (state, action) => {
         viewProductModal: {
           modal: false,
           pId: '',
+          pPid: '',
           pName: '',
           pDescription: '',
           pImages: [],

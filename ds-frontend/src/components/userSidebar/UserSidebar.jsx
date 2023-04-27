@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom'
 import './userSidebar.scoped.css'
 import { useRef } from 'react'
 
-
 export default function SideBar(props) {
   const ref = useRef(null)
   return (
@@ -71,7 +70,7 @@ export default function SideBar(props) {
             <ul className="collapse list-unstyled font-color" id="company">
               <li>
                 <NavLink
-                  to="/admin/admin-company"
+                  to="./user/seller-review"
                   className={({ isActive }) =>
                     isActive ? 'font-color side-link selected' : 'font-color side-link '
                   }
@@ -92,6 +91,17 @@ export default function SideBar(props) {
                 </NavLink>
               </li>
             </ul>
+          </li>
+          <li>
+            <NavLink
+              to="./seller-reviews"
+              className={({ isActive }) =>
+                isActive ? 'font-color side-link selected' : 'font-color side-link '
+              }
+            >
+              <i className="fa fa-cubes" aria-hidden="true"></i>
+              {!props.isActive ? <small className="tw-"> Reviews</small> : <small> </small>}
+            </NavLink>
           </li>
           <li>
             <a
@@ -249,6 +259,17 @@ export default function SideBar(props) {
                 </NavLink>
               </li>
             </ul>
+          </li>
+          <li>
+            <NavLink
+              to="./buyer-reviews"
+              className={({ isActive }) =>
+                isActive ? 'font-color side-link selected' : 'font-color side-link '
+              }
+            >
+              <i className="fa fa-cubes" aria-hidden="true"></i>
+              {!props.isActive ? <small className="tw-"> Reviews</small> : <small> </small>}
+            </NavLink>
           </li>
           <li>
             <a

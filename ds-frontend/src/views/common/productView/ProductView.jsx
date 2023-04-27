@@ -3,13 +3,15 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getProductById } from '../../../services/productService'
 import { TopNav } from '../../../components'
+import Reviews from '../../../components/reviewCards/reviews'
+import Grid from '@mui/material/Grid'
+import AddReviewCard from '../../reviews/buyerView/addReview/addReview'
 import AwesomeSlider from 'react-awesome-slider'
 import 'react-awesome-slider/dist/styles.css'
 import 'react-awesome-slider/dist/styles.css'
 import 'react-awesome-slider/dist/captioned.css'
 import './productView.scoped.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 const buttonStyle = {
   borderRadius: '50%',
@@ -150,7 +152,21 @@ const ProductView = () => {
           </Row>
           <Row className="tw-mt-16">
             <Col>
-              <h1>Customer Reviews</h1>
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <h1 className="tw-font-bold tw-text-2xl">Customer Reviews</h1>
+                </Grid>
+                <Grid item xs={6}>
+                  <AddReviewCard
+                    reviewCategory={{
+                      product: { _id: product._id },
+                      user: { _id: localStorage.getItem('user_id') },
+                      seller: { _id: product.pSeller },
+                    }}
+                  />
+                </Grid>
+              </Grid>
+              <Reviews reviewCategory={{ product: product._id }} />
             </Col>
             <Col>
               <h2 className="tw-font-bold tw-text-2xl">Description</h2>

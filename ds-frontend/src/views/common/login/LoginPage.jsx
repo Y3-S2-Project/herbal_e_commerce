@@ -29,6 +29,7 @@ export default function Login() {
           localStorage.setItem('email', res.data.data.user.email)
           localStorage.setItem('authenticated', true)
           localStorage.setItem('id', res.data.data.user._id)
+          localStorage.setItem('user_id', res.data.data.user._id)
  
           setEmail('')
           setPassword('')
