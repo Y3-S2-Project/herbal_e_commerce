@@ -1,0 +1,20 @@
+apiVersion: skaffold/v3alpha1
+kind: Config
+build:
+  local:
+    push: false
+  artifacts:
+    - image: chamathjayasekarahtwondevops/frontend
+      context: ds-frontend
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "**/**/*.js"
+          - dest: ./public
+            src: "./public/**/*"
+
+manifests:
+  rawYaml:
+    - ./config/k8s/*

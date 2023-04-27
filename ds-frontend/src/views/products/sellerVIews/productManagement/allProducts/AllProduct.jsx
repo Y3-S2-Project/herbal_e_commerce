@@ -42,6 +42,7 @@ const AllProduct = (props) => {
 
   /* This method call the editmodal & dispatch product context */
   const editProduct = (pId, product, type) => {
+    console.log(product)
     if (type) {
       dispatch({
         type: 'editProductModalOpen',

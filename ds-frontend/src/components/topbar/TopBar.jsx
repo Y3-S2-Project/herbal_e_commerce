@@ -7,9 +7,7 @@ import socketIOClient from 'socket.io-client'
 import { Menu, Dropdown, message } from 'antd'
 import { useState, useEffect } from 'react'
 
-
-
-export const socket = socketIOClient(process.env.REACT_APP_BACKEND_URL)
+export const socket = socketIOClient('http://localhost:3002')
 
 export default function TopBar(props) {
   const [feeds, setFeeds] = useState([])

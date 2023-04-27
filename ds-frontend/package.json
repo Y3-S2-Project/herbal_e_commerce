@@ -49,8 +49,8 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start --port 8010",
-    "dev": "craco start --port 8010",
+    "start": "react-scripts start",
+    "dev": "craco start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
