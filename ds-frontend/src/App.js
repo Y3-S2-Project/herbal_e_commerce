@@ -51,7 +51,6 @@ function App() {
           <Route path="/all-products" name="ItemView" element={<ItemView />} />
           <Route path="/orderview" name="OrderView" element={<OrderView />} />
           <Route path="/productview/:id" name="ProductView" element={<ProductView />} />
-          {/* <Route path="/reviews" name="Reviews" element={<ReviewsView />} /> */}
           <Route element={<ProtectedRoutes allowedRoles={['ADMIN']} />}>
             <Route path="admin/*" name="Home" element={<AdminLayout />} />
           </Route>

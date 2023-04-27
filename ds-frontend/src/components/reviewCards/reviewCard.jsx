@@ -14,9 +14,11 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 import FlagIcon from '@mui/icons-material/Flag'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
+import EditReviewCard from '../../views/reviews/buyerView/editReview/editReview'
 
 export default function ReviewCard(reviewDetails) {
   const [anchorEl, setAnchorEl] = useState(null)
+  const [openEditDialog, setOpenEditDialog] = useState(false)
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget)
   }
@@ -28,8 +30,8 @@ export default function ReviewCard(reviewDetails) {
     handleMenuClose()
   }
   const handleEdit = () => {
-    console.log('edit')
     handleMenuClose()
+    setOpenEditDialog(true)
   }
   const handleDelete = () => {
     console.log('delete')
@@ -50,85 +52,88 @@ export default function ReviewCard(reviewDetails) {
   }
 
   return (
-    <Card
-      sx={{
-        minWidth: 275,
-        margin: '1rem',
-        borderRadius: '10px',
-      }}
-    >
-      <CardContent>
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={1}>
-              <Avatar alt="Remy Sharp" src="" />
-            </Grid>
-            <Grid item xs={10}>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                {reviewDetails.reviewDetails.user.name?.first_name +
-                  ' ' +
-                  reviewDetails.reviewDetails.user.name?.last_name}
-              </Typography>
-              <Typography sx={{ fontSize: 10 }} color="text.secondary" gutterBottom>
-                {formatDate(reviewDetails.reviewDetails.updatedAt)}
-              </Typography>
-            </Grid>
-            <Grid item xs={1}>
-              <IconButton
-                aria-controls="card-menu"
-                aria-haspopup
-                onClick={handleMenuOpen}
-                size="small"
-              >
-                <MoreVertIcon />
-              </IconButton>
-              <Menu
-                id="card-menu"
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleMenuClose}
-              >
-                {reviewDetails.reviewDetails.user.buyer === localStorage.getItem('id') ? (
-                  <div>
-                    <MenuItem onClick={handleEdit}>
-                      <EditIcon sx={{ mr: 1 }} />
-                      Edit
+    <>
+    <EditReviewCard isOpen={openEditDialog} onClose={() => setOpenEditDialog(false)} reviewDetails={reviewDetails.reviewDetails} />
+      <Card
+        sx={{
+          minWidth: 275,
+          margin: '1rem',
+          borderRadius: '10px',
+        }}
+      >
+        <CardContent>
+          <Box sx={{ flexGrow: 1 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={1}>
+                <Avatar alt="Remy Sharp" src="" />
+              </Grid>
+              <Grid item xs={10}>
+                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                  {reviewDetails.reviewDetails.user.name?.first_name +
+                    ' ' +
+                    reviewDetails.reviewDetails.user.name?.last_name}
+                </Typography>
+                <Typography sx={{ fontSize: 10 }} color="text.secondary" gutterBottom>
+                  {formatDate(reviewDetails.reviewDetails.updatedAt)}
+                </Typography>
+              </Grid>
+              <Grid item xs={1}>
+                <IconButton
+                  aria-controls="card-menu"
+                  aria-haspopup
+                  onClick={handleMenuOpen}
+                  size="small"
+                >
+                  <MoreVertIcon />
+                </IconButton>
+                <Menu
+                  id="card-menu"
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl)}
+                  onClose={handleMenuClose}
+                >
+                  {reviewDetails.reviewDetails.user.buyer === localStorage.getItem('id') ? (
+                    <div>
+                      <MenuItem onClick={handleEdit}>
+                        <EditIcon sx={{ mr: 1 }} />
+                        Edit
+                      </MenuItem>
+                      <MenuItem onClick={handleDelete}>
+                        <DeleteIcon sx={{ mr: 1 }} />
+                        Delete
+                      </MenuItem>
+                    </div>
+                  ) : (
+                    <MenuItem onClick={handleFlagInappropriate}>
+                      <FlagIcon sx={{ mr: 1 }} />
+                      Flag as inappropriate
                     </MenuItem>
-                    <MenuItem onClick={handleDelete}>
-                      <DeleteIcon sx={{ mr: 1 }} />
-                      Delete
-                    </MenuItem>
-                  </div>
-                ) : (
-                  <MenuItem onClick={handleFlagInappropriate}>
-                    <FlagIcon sx={{ mr: 1 }} />
-                    Flag as inappropriate
-                  </MenuItem>
-                )}
-              </Menu>
+                  )}
+                </Menu>
+              </Grid>
             </Grid>
-          </Grid>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Rating name="read-only" value={reviewDetails.reviewDetails.rating} readOnly />
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Rating name="read-only" value={reviewDetails.reviewDetails.rating} readOnly />
+              </Grid>
             </Grid>
-          </Grid>
-          {/* <Grid container spacing={2}>
+            {/* <Grid container spacing={2}>
             <Grid item xs={12}>
               <Typography variant="h6" color="text.primary" gutterBottom>
                 Lorem ipsum dolor sit amet
               </Typography>
             </Grid>
           </Grid> */}
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Typography variant="body2" color="text.primary" gutterBottom>
-                {reviewDetails.reviewDetails.comment}
-              </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Typography variant="body2" color="text.primary" gutterBottom>
+                  {reviewDetails.reviewDetails.comment}
+                </Typography>
+              </Grid>
             </Grid>
-          </Grid>
-        </Box>
-      </CardContent>
-    </Card>
+          </Box>
+        </CardContent>
+      </Card>
+    </>
   )
 }

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Dialog from '@mui/material/Dialog'
@@ -16,20 +16,16 @@ import Rating from '@mui/material/Rating'
 import StarIcon from '@mui/icons-material/Star'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
-import { createProductReview, createSellerReview } from '../../../../services/reviewService'
-export default function AddReviewCard(reviewCategory) {
-  const [open, setOpen] = useState(false)
-  const [rating, setRating] = useState(0)
+import { updateProductReview, updateSellerReview } from '../../../../services/reviewService'
+import { getReviewById } from '../../../../services/reviewService'
+
+export default function EditReviewCard({reviewDetails, isOpen, onClose}) {
+  console.log('This is reveiw details in edit card: ', reviewDetails)
+  const [rating, setRating] = useState(reviewDetails.rating)
   const [hover, setHover] = useState(-1)
-  const [comment, setComment] = useState('')
-
-  const handleClickOpen = () => {
-    setOpen(true)
-  }
-
-  const handleClose = () => {
-    setOpen(false)
-  }
+  const [comment, setComment] = useState(reviewDetails.comment)
+  const reviewType = reviewDetails.product ? 'product' : 'seller'
+  console.log('This is review type: ', reviewType)
 
   const handleRatingChange = (event, value) => {
     setRating(value)
@@ -43,36 +39,22 @@ export default function AddReviewCard(reviewCategory) {
     setComment(event.target.value)
   }
 
-  const handleSave = () => {
-    reviewCategory.product
-      ? createProductReview({
-          rating: rating,
-          comment: comment,
-          product: reviewCategory.product,
-          user: reviewCategory.user,
-        })
-          .then((res) => {
-            console.log(res)
-          })
-          .catch((err) => {
-            console.log(err)
-          })
-      : createSellerReview({
-          rating: rating,
-          comment: comment,
-          seller: reviewCategory.seller,
-          user: reviewCategory.user,
-        })
-          .then((res) => {
-            console.log(res)
-          })
-          .catch((err) => {
-            console.log(err)
-          })
-    setRating(0)
-    setHover(-1)
-    setComment('')
-    handleClose()
+  const handleUpdate = () => {
+    const {user, ...review} = reviewDetails
+    review.user = reviewDetails.user._id
+    review.rating = rating
+    review.comment = comment
+    console.log("this is updated review: " , review)
+
+    if (reviewType === 'product') {
+      updateProductReview(review.user, review)
+    } else {
+      updateSellerReview(review.user, review)
+    }
+    // setRating(0)
+    // setComment('')
+    // setHover(-1)
+    onClose()
   }
 
   const ratingLabels = {
@@ -89,19 +71,19 @@ export default function AddReviewCard(reviewCategory) {
 
   return (
     <>
-      <Button variant="outlined" onClick={handleClickOpen} sx={{ margin: 2, float: 'right' }}>
+      {/* <Button variant="outlined" onClick={handleClickOpen} sx={{ margin: 2, float: 'right' }}>
         <AddIcon />
         Edit Review
-      </Button>
+      </Button> */}
       <div>
-        <Dialog open={open} onClose={handleClose} fullWidth>
+        <Dialog open={isOpen} onClose={onClose} fullWidth>
           <Grid container>
             <Grid item xs={8}>
-              <DialogTitle>Add a Review</DialogTitle>
+              <DialogTitle>Edit your Review</DialogTitle>
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', float: 'right', margin: 1 }}>
-                <IconButton onClick={handleClose}>
+                <IconButton onClick={onClose}>
                   <CloseIcon />
                 </IconButton>
               </Box>
@@ -113,7 +95,7 @@ export default function AddReviewCard(reviewCategory) {
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <FormControl component="fieldset">
-                    <FormLabel component="legend">Rate your product / seller</FormLabel>
+                    <FormLabel component="legend">Rate your {reviewType}</FormLabel>
                     <Box
                       sx={{
                         width: 200,
@@ -145,7 +127,7 @@ export default function AddReviewCard(reviewCategory) {
                 <Grid item xs={12}>
                   <FormControl margin="none">
                     <FormLabel component="legend">
-                      What did you think about this product / seller?
+                      What did you think about this {reviewType}?
                     </FormLabel>
                     <Box
                       sx={{
@@ -168,8 +150,8 @@ export default function AddReviewCard(reviewCategory) {
             </Box>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleSave}>Save</Button>
+            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={handleUpdate}>Save</Button>
           </DialogActions>
         </Dialog>
       </div>

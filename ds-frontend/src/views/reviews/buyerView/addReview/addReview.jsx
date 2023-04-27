@@ -51,18 +51,11 @@ export default function AddReviewCard(reviewCategory) {
   }
 
   const handleSave = () => {
-    console.log('This is the passed review category: ', reviewCategory)
-    console.log('This is review category product: ', reviewCategory.reviewCategory.product)
-    console.log('This is review category seller: ', reviewCategory.reviewCategory.seller)
     const review = reviewCategory.reviewCategory
     review.rating = rating
     review.comment = comment
-    console.log('This is review: ', review)
     if (reviewType === 'product') {
-      // const productReview = review
-      // delete productReview.seller
       const { seller, ...productReview } = review
-      console.log('This is review after deleting seller: ', review)
       createProductReview(productReview)
         .then((res) => {
           console.log('Product review added: ', res)
@@ -71,10 +64,7 @@ export default function AddReviewCard(reviewCategory) {
           console.log('Error in creating product reveiw: ', err)
         })
     } else {
-      // const sellerReview = review
-      // delete sellerReview.product
       const { product, ...sellerReview } = review
-      console.log('This is review after deleting product: ', review)
 
       createSellerReview(sellerReview)
         .then((res) => {

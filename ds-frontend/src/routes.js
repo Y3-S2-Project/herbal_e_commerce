@@ -24,14 +24,14 @@ const routes = [
     element: AdminProductsView,
     permissions: 'isAdmin',
   },
-  // {
-  //   path: '/reviews',
-  //   name: 'SellerReviews',
-  //   element: SellerReviews,
-  //   permissions: 'isSeller',
-  // },
   {
-    path: '/reviews',
+    path: '/seller-reviews',
+    name: 'SellerReviews',
+    element: SellerReviews,
+    permissions: 'isSeller',
+  },
+  {
+    path: '/buyer-reviews',
     name: 'BuyerReviews',
     element: BuyerReviews,
     permissions: 'isBuyer',
