@@ -10,11 +10,12 @@ import Rating from '@mui/material/Rating'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import FlagIcon from '@mui/icons-material/Flag'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
+import FlagIcon from '@mui/icons-material/Flag'
+import EditIcon from '@mui/icons-material/Edit'
+import DeleteIcon from '@mui/icons-material/Delete'
 
 export default function ReviewCard(reviewDetails) {
-  console.log('reviewDetails', reviewDetails)
   const [anchorEl, setAnchorEl] = useState(null)
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget)
@@ -24,6 +25,14 @@ export default function ReviewCard(reviewDetails) {
   }
   const handleFlagInappropriate = () => {
     //TODO: Flag as inappropriate
+    handleMenuClose()
+  }
+  const handleEdit = () => {
+    console.log('edit')
+    handleMenuClose()
+  }
+  const handleDelete = () => {
+    console.log('delete')
     handleMenuClose()
   }
 
@@ -52,13 +61,13 @@ export default function ReviewCard(reviewDetails) {
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs={1}>
-              <Avatar alt="Remy Sharp" src="../../../assets/images/landing-page/drugs-image.png" />
+              <Avatar alt="Remy Sharp" src="" />
             </Grid>
             <Grid item xs={10}>
               <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                {reviewDetails.reviewDetails.user.name.first_name +
+                {reviewDetails.reviewDetails.user.name?.first_name +
                   ' ' +
-                  reviewDetails.reviewDetails.user.name.last_name}
+                  reviewDetails.reviewDetails.user.name?.last_name}
               </Typography>
               <Typography sx={{ fontSize: 10 }} color="text.secondary" gutterBottom>
                 {formatDate(reviewDetails.reviewDetails.updatedAt)}
@@ -79,10 +88,23 @@ export default function ReviewCard(reviewDetails) {
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
               >
-                <MenuItem onClick={handleFlagInappropriate}>
-                  <FlagIcon sx={{ mr: 1 }} />
-                  Flag as inappropriate
-                </MenuItem>
+                {reviewDetails.reviewDetails.user.buyer === localStorage.getItem('id') ? (
+                  <div>
+                    <MenuItem onClick={handleEdit}>
+                      <EditIcon sx={{ mr: 1 }} />
+                      Edit
+                    </MenuItem>
+                    <MenuItem onClick={handleDelete}>
+                      <DeleteIcon sx={{ mr: 1 }} />
+                      Delete
+                    </MenuItem>
+                  </div>
+                ) : (
+                  <MenuItem onClick={handleFlagInappropriate}>
+                    <FlagIcon sx={{ mr: 1 }} />
+                    Flag as inappropriate
+                  </MenuItem>
+                )}
               </Menu>
             </Grid>
           </Grid>

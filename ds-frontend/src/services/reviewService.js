@@ -31,6 +31,7 @@ export const getReviews = async (review) => {
 }
 
 export const createProductReview = async (productReview) => {
+  console.log('product review in service: ', productReview)
   try {
     const response = await axiosInstance.post(`/reviews/products/create`, productReview);
     return response.data;
@@ -41,6 +42,7 @@ export const createProductReview = async (productReview) => {
 };
 
 export const createSellerReview = async (sellerReview) => {
+  console.log('seller review in service: ', sellerReview)
   try {
     const response = await axiosInstance.post(`/reviews/sellers/create`, sellerReview);
     return response.data;

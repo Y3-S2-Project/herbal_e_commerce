@@ -3,6 +3,21 @@ import Product from "../models/product.model";
 import Seller from "../models/seller.model";
 import logger from "../utils/logger";
 
+// Get the current highest review ID from the database
+const getMaxReviewId = async () => {
+  const result = await Review.findOne()
+    .sort({ reviewID: -1 })
+    .select('reviewID')
+    .exec();
+  if (result) {
+    const currentId = result.reviewID;
+    const numericPart = parseInt(currentId.slice(1));
+    return numericPart;
+  } else {
+    return 0;
+  }
+};
+
 export const getAllReviewsRepository = async () => {
   try {
     const reviews = await Review.find({});
@@ -51,7 +66,7 @@ export const getReviewsRepository = async (reviewData) => {
   console.log("review data in repo", reviewData);
   try {
     const reviews = await Review.find(reviewData)
-    .populate("user", "name")
+    .populate("user")
     .exec();
     if (!reviews) {
       return {
@@ -83,10 +98,12 @@ export const createProductReviewRepository = async (reviewData, product_id) => {
       message: "Product not found",
     };
   }
-
+  const maxReviewId = await getMaxReviewId();
+  const nextId = `R${(maxReviewId + 1).toString().padStart(3, '0')}`;
   const review = new Review({
     ...reviewData,
     product: product_id,
+    reviewID: nextId,
   });
 
   try {
@@ -118,10 +135,12 @@ export const createSellerReviewRepository = async (reviewData, seller_id) => {
       message: "Seller not found",
     };
   }
-
+  const maxReviewId = await getMaxReviewId();
+  const nextId = `R${(maxReviewId + 1).toString().padStart(3, '0')}`;
   const review = new Review({
     ...reviewData,
     seller: seller_id,
+    reviewID: nextId,
   });
 
   try {

@@ -3,6 +3,7 @@ import React from 'react'
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Products = React.lazy(() => import('./views/products/sellerVIews/productManagement/Products'))
 const SellerReviews = React.lazy(() => import('./views/reviews/sellerView/sellerReviewView'))
+const BuyerReviews = React.lazy(() => import('./views/reviews/buyerView/buyerReviewView'))
 const AdminProductsView = React.lazy(() =>
   import('./views/products/adminViews/productManagement/AdminProductsView'),
 )
@@ -23,11 +24,17 @@ const routes = [
     element: AdminProductsView,
     permissions: 'isAdmin',
   },
+  // {
+  //   path: '/reviews',
+  //   name: 'SellerReviews',
+  //   element: SellerReviews,
+  //   permissions: 'isSeller',
+  // },
   {
     path: '/reviews',
-    name: 'SellerReviews',
-    element: SellerReviews,
-    permissions: 'isSeller',
+    name: 'BuyerReviews',
+    element: BuyerReviews,
+    permissions: 'isBuyer',
   }
 ]
 
