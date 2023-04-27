@@ -20,12 +20,10 @@ import { updateProductReview, updateSellerReview } from '../../../../services/re
 import { getReviewById } from '../../../../services/reviewService'
 
 export default function EditReviewCard({reviewDetails, isOpen, onClose}) {
-  console.log('This is reveiw details in edit card: ', reviewDetails)
   const [rating, setRating] = useState(reviewDetails.rating)
   const [hover, setHover] = useState(-1)
   const [comment, setComment] = useState(reviewDetails.comment)
   const reviewType = reviewDetails.product ? 'product' : 'seller'
-  console.log('This is review type: ', reviewType)
 
   const handleRatingChange = (event, value) => {
     setRating(value)
@@ -44,16 +42,15 @@ export default function EditReviewCard({reviewDetails, isOpen, onClose}) {
     review.user = reviewDetails.user._id
     review.rating = rating
     review.comment = comment
-    console.log("this is updated review: " , review)
 
     if (reviewType === 'product') {
       updateProductReview(review.user, review)
     } else {
       updateSellerReview(review.user, review)
     }
-    // setRating(0)
-    // setComment('')
-    // setHover(-1)
+    setRating(0)
+    setComment('')
+    setHover(-1)
     onClose()
   }
 

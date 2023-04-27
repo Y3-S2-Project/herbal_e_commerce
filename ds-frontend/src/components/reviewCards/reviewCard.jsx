@@ -15,10 +15,12 @@ import FlagIcon from '@mui/icons-material/Flag'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditReviewCard from '../../views/reviews/buyerView/editReview/editReview'
+import DeleteReviewCard from '../../views/reviews/buyerView/deleteReview/deleteReview'
 
 export default function ReviewCard(reviewDetails) {
   const [anchorEl, setAnchorEl] = useState(null)
   const [openEditDialog, setOpenEditDialog] = useState(false)
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false)
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget)
   }
@@ -34,8 +36,8 @@ export default function ReviewCard(reviewDetails) {
     setOpenEditDialog(true)
   }
   const handleDelete = () => {
-    console.log('delete')
     handleMenuClose()
+    setOpenDeleteDialog(true)
   }
 
   const formatDate = (dateString) => {
@@ -54,6 +56,7 @@ export default function ReviewCard(reviewDetails) {
   return (
     <>
     <EditReviewCard isOpen={openEditDialog} onClose={() => setOpenEditDialog(false)} reviewDetails={reviewDetails.reviewDetails} />
+    <DeleteReviewCard isOpen={openDeleteDialog} onClose={() => setOpenDeleteDialog(false)} reviewDetails={reviewDetails.reviewDetails} />
       <Card
         sx={{
           minWidth: 275,
