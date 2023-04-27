@@ -7,6 +7,7 @@ const BuyerReviews = React.lazy(() => import('./views/reviews/buyerView/buyerRev
 const AdminProductsView = React.lazy(() =>
   import('./views/products/adminViews/productManagement/AdminProductsView'),
 )
+const OrderAdminView = React.lazy(() => import('./views/orderAdmin/OrderAdminView'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
 
@@ -25,6 +26,18 @@ const routes = [
     permissions: 'isAdmin',
   },
   {
+    path: '/adminorder',
+    name: 'OrderAdminView',
+    element: OrderAdminView,
+    permissions: 'isAdmin',
+  },
+  {
+    path: '/adminorder',
+    name: 'OrderAdminView',
+    element: OrderAdminView,
+    permissions: 'isAdmin',
+  },
+  {
     path: '/seller-reviews',
     name: 'SellerReviews',
     element: SellerReviews,
@@ -35,7 +48,7 @@ const routes = [
     name: 'BuyerReviews',
     element: BuyerReviews,
     permissions: 'isBuyer',
-  }
+  },
 ]
 
 export default routes
