@@ -33,7 +33,7 @@ function TopNav() {
   const fetchCartCount = () => {
     if (localStorage.getItem('role') === 'BUYER') {
       axios
-        .get('http://localhost:3001/api/cart/getCartCount/642d7b2fadc38c896ac0a75e', config)
+        .get(`http://localhost:3001/api/cart/getCartCount/${localStorage.getItem('id')}`, config)
         .then((response) => {
           setNoOfItems(response.data.count)
         })
@@ -127,7 +127,7 @@ function TopNav() {
             <div className="collapse nav-categories" id="categories-menu">
               <ul className="list-unstyled">
                 <li>
-                  <NavLink to="/orderview">My Orders</NavLink>
+                  <NavLink to="/category">Category 1</NavLink>
                 </li>
                 <li>
                   <NavLink to="/category2">Category 2</NavLink>
@@ -211,6 +211,15 @@ function TopNav() {
                         <a className="dropdown-item" href="/user/dashboard">
                           Profile
                         </a>
+                      )}
+                    </li>
+                    <li>
+                      {localStorage.getItem('role') === 'BUYER' ? (
+                        <a className="dropdown-item" href="/orderview">
+                          My Orders
+                        </a>
+                      ) : (
+                        ''
                       )}
                     </li>
                     <li>

@@ -27,6 +27,13 @@ const orderSchema = new mongoose.Schema(
       type: String,
       default: "Pending",
     },
+    paymentStatus: {
+      type: String,
+      default: "Pending",
+    },
+    totalPrice: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );
@@ -34,4 +41,3 @@ const orderSchema = new mongoose.Schema(
 const Order = mongoose.model("Order", orderSchema);
 
 export default Order;
-

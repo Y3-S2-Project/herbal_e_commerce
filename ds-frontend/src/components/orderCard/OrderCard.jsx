@@ -62,7 +62,7 @@ export default function OrderCard(props) {
               <Badge bg="warning" text="dark">
                 {order.orderStatus}
               </Badge>
-            ) : order.orderStatus === 'Canceled' ? (
+            ) : order.orderStatus === 'Cancelled' ? (
               <Badge bg="danger">{order.orderStatus}</Badge>
             ) : order.orderStatus === 'Dispatch' ? (
               <Badge bg="info" text="dark">

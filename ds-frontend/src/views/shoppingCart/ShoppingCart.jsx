@@ -4,6 +4,7 @@ import { TopNav } from '../../components'
 import { Col, Container, Row } from 'react-bootstrap'
 import './shoppingCart.css'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 export default function ShoppingCart() {
   const [totalPrice, setTotalPrice] = React.useState(0)
@@ -16,9 +17,11 @@ export default function ShoppingCart() {
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
   }
 
+  
+
   //get total price of cart
   axios
-    .get('http://localhost:3001/api/cart/getTotalPrice/642d7b2fadc38c896ac0a75e', config)
+    .get(`http://localhost:3001/api/cart/getTotalPrice/${localStorage.getItem('id')}`, config)
     .then((response) => {
       // console.log(response.data);
       setTotalPrice(response.data.totalPrice)
@@ -29,7 +32,7 @@ export default function ShoppingCart() {
 
   //get no of items in the cart
   axios
-    .get('http://localhost:3001/api/cart/getCartCount/642d7b2fadc38c896ac0a75e', config)
+    .get(`http://localhost:3001/api/cart/getCartCount/${localStorage.getItem('id')}`, config)
     .then((response) => {
       setNoOfItems(response.data.count)
     })
@@ -40,7 +43,7 @@ export default function ShoppingCart() {
   //remove all items from cart
   const handleRemove = () => {
     axios
-      .delete('http://localhost:3001/api/cart/642d7b2fadc38c896ac0a75e', config)
+      .delete(`http://localhost:3001/api/cart/${localStorage.getItem('id')}`, config)
       .then((response) => {
         console.log('Deleted')
         setCart([])
@@ -54,7 +57,7 @@ export default function ShoppingCart() {
   const handleRemoveProduct = (productId, e) => {
     e.preventDefault()
     axios
-      .delete('http://localhost:3001/api/cart/642d7b2fadc38c896ac0a75e/' + productId, config)
+      .delete(`http://localhost:3001/api/cart/${localStorage.getItem('id')}/` + productId, config)
       .then((response) => {
         console.log(response.data)
       })
@@ -66,7 +69,7 @@ export default function ShoppingCart() {
   //get the cart
   useEffect(() => {
     axios
-      .get('http://localhost:3001/api/cart/642d7b2fadc38c896ac0a75e', config)
+      .get(`http://localhost:3001/api/cart/${localStorage.getItem('id')}`, config)
       .then((response) => {
         // console.log(response.data)
         setUserId(response.data.userId)
@@ -119,12 +122,11 @@ export default function ShoppingCart() {
             <Col></Col>
             <Col></Col>
             <Col className="tw-flex tw-justify-end">
-              <a
-                href="#"
-                className="checkout-btn tw-text-right tw-text-white tw-py-1 tw-px-4 tw-rounded-lg tw-mt-1 "
-              >
-                Checkout
-              </a>
+              <Link to="/checkout">
+                <span className="checkout-btn tw-text-right tw-text-white tw-py-1 tw-px-4 tw-rounded-lg tw-mt-1 ">
+                  Checkout
+                </span>
+              </Link>
             </Col>
           </Row>
         </Container>

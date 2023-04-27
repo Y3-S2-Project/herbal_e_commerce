@@ -5,6 +5,9 @@ import productRouter from "./product.routes";
 import orderRouter from "./order.routes";
 import cartRouter from "./cart.routes";
 import reviewRouter from "./review.routes";
+import deliveryRouter from "./delivery.routes";
+
+import paymentRouter from "./payment.routes";
 const router = express.Router();
 
 router.use("/auth", authRouter);
@@ -13,5 +16,7 @@ router.use("/reviews", reviewRouter);
 router.use("/product", productRouter);
 router.use("/order", orderRouter);
 router.use("/cart", cartRouter);
+router.use("/delivery", deliveryRouter);
+router.use("/payment", paymentRouter);
 
 export default router;
