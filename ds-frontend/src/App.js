@@ -23,6 +23,8 @@ import ShoppingCart from './views/shoppingCart/ShoppingCart'
 import ItemView from './views/itemView/ItemView'
 import OrderView from './views/orders/OrderView'
 // import ReviewsView from './views/reviews/sellerView/sellerReviewView'
+import Checkout from './views/checkout/Checkout'
+import Payment from './views/checkout/Payment'
 
 const loading = (
   <Spinner animation="border" role="status">
@@ -52,6 +54,8 @@ function App() {
           <Route path="/orderview" name="OrderView" element={<OrderView />} />
           <Route path="/productview/:id" name="ProductView" element={<ProductView />} />
           {/* <Route path="/reviews" name="Reviews" element={<ReviewsView />} /> */}
+          <Route path="/checkout" name="Checkout" element={<Checkout />} />
+          <Route path="/payment" name="Payment" element={<Payment />} />
           <Route element={<ProtectedRoutes allowedRoles={['ADMIN']} />}>
             <Route path="admin/*" name="Home" element={<AdminLayout />} />
           </Route>
